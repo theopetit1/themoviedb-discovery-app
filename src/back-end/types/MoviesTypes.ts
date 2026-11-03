@@ -77,3 +77,11 @@ export type Genre = {
   id: number;
   name: string;
 };
+
+/**
+ * TypeScript type for a country entity stored in the database.
+ */
+export type Country = {
+  code: string;
+  name: string;
+};
