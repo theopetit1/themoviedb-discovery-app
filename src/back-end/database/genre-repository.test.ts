@@ -1,7 +1,12 @@
 import { DatabaseSync } from 'node:sqlite';
-import { beforeEach, afterEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { initializeSchema } from './schema';
-import { getGenreById, listGenres, upsertGenres } from './genre-repository';
+import {
+  cleanUnusedGenres,
+  getGenreById,
+  listGenres,
+  upsertGenres,
+} from './genre-repository';
 import type { Genre } from '../types/MoviesTypes';
 
 describe('genre-repository.ts', () => {
@@ -137,6 +142,54 @@ describe('genre-repository.ts', () => {
 
       // Verify that database remained in initial state (rollback verification)
       expect(listGenres(database)).toEqual([{ id: 10, name: 'Initial' }]);
+    });
+  });
+
+  describe('cleanUnusedGenres', () => {
+    it('returns 0 when no genres exist', () => {
+      expect(cleanUnusedGenres(database)).toBe(0);
+    });
+
+    it('deletes only genres that are not associated with any movie', () => {
+      upsertGenres(database, [
+        { id: 28, name: 'Action' },
+        { id: 35, name: 'Comédie' },
+        { id: 18, name: 'Drame' },
+      ]);
+
+      // Insert a dummy movie and associate it with Action (28)
+      database
+        .prepare(`
+          INSERT INTO movies (id, title, original_title, original_language, overview, collected_at)
+          VALUES (1, 'Test Movie', 'Test Movie', 'fr', 'Overview', '2026-11-03')
+        `)
+        .run();
+      database
+        .prepare('INSERT INTO movie_genres (movie_id, genre_id) VALUES (1, 28)')
+        .run();
+
+      const deletedCount = cleanUnusedGenres(database);
+
+      expect(deletedCount).toBe(2);
+      expect(listGenres(database)).toEqual([{ id: 28, name: 'Action' }]);
+    });
+
+    it('rolls back and rethrows if an error occurs during cleanup', () => {
+      // Mock prepare to throw on DELETE
+      const originalPrepare = database.prepare.bind(database);
+      const prepareSpy = vi
+        .spyOn(database, 'prepare')
+        .mockImplementation((sql: string) => {
+          if (sql.includes('DELETE FROM genres')) {
+            throw new Error('Database error during cleanup');
+          }
+          return originalPrepare(sql);
+        });
+
+      expect(() => cleanUnusedGenres(database)).toThrow(
+        'Database error during cleanup',
+      );
+      prepareSpy.mockRestore();
     });
   });
 });

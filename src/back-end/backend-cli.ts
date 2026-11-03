@@ -9,20 +9,9 @@ import {
 import { parseGenresCsv } from './utils/csv-parser.ts';
 
 /** Command-line interface for movie database operations. */
-export const program = new Command()
-  .description('CLI for movie database operations')
-  .option(
-    '-p, --path <path>',
-    'path to the SQLite database file',
-    DEFAULT_DATABASE_PATH,
-  );
-
-/**
- * Resolves the database path using subcommand options falling back to global options.
- */
-function getTargetDatabasePath(options?: { path?: string }): string {
-  return options?.path ?? program.opts().path ?? DEFAULT_DATABASE_PATH;
-}
+export const program = new Command().description(
+  'CLI for movie database operations',
+);
 
 program
   .command('create-database')
@@ -32,11 +21,10 @@ program
     'path to the SQLite database file',
     DEFAULT_DATABASE_PATH,
   )
-  .action((options: { path?: string }) => {
-    const dbPath = getTargetDatabasePath(options);
-    const database = getDatabase(dbPath);
+  .action(({ path }: { path: string }) => {
+    const database = getDatabase(path);
     database.close();
-    console.log(`Database available at ${resolve(dbPath)}`);
+    console.log(`Database available at ${resolve(path)}`);
   });
 
 program
@@ -47,15 +35,14 @@ program
     'path to the SQLite database file',
     DEFAULT_DATABASE_PATH,
   )
-  .action((csvFile: string, options: { path?: string }) => {
+  .action((csvFile: string, { path }: { path: string }) => {
     // Validate CSV file before opening the database connection
     const genres = parseGenresCsv(csvFile);
-    const dbPath = getTargetDatabasePath(options);
-    const database = getDatabase(dbPath);
+    const database = getDatabase(path);
     try {
       upsertGenres(database, genres);
       console.log(
-        `Imported ${genres.length} genres into database at ${resolve(dbPath)}`,
+        `Imported ${genres.length} genres into database at ${resolve(path)}`,
       );
     } finally {
       database.close();
@@ -70,13 +57,12 @@ program
     'path to the SQLite database file',
     DEFAULT_DATABASE_PATH,
   )
-  .action((options: { path?: string }) => {
-    const dbPath = getTargetDatabasePath(options);
-    const database = getDatabase(dbPath);
+  .action(({ path }: { path: string }) => {
+    const database = getDatabase(path);
     try {
       const removedCount = cleanUnusedGenres(database);
       console.log(
-        `Cleaned ${removedCount} unused genres from database at ${resolve(dbPath)}`,
+        `Cleaned ${removedCount} unused genres from database at ${resolve(path)}`,
       );
     } finally {
       database.close();
