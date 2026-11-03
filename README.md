@@ -2,6 +2,8 @@
 
 Application web de découverte de films qui s'appuie sur l'API de [The Movie Database (TMDB)](https://www.themoviedb.org/). Elle affiche les films populaires en France et permet de consulter leur fiche détaillée.
 
+> 📋 **Suivi de projet & Fil conducteur** : Consultez le document [docs/SUIVI_PROJET.md](./docs/SUIVI_PROJET.md) pour retrouver l'état d'avancement des tickets du backlog, les choix d'architecture logicielle et les preuves de tests de la version 2.0.0.
+
 ## Fonctionnalités
 
 - Liste des films populaires, avec pagination et paramètres de langue et de région.
