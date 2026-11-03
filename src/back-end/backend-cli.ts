@@ -6,43 +6,48 @@ import {
   cleanUnusedGenres,
   upsertGenres,
 } from './database/genre-repository.ts';
-import { parseGenresCsv } from './utils/csv-parser.ts';
+import {
+  cleanUnusedCountries,
+  upsertCountries,
+} from './database/country-repository.ts';
+import { parseCountriesCsv, parseGenresCsv } from './utils/csv-parser.ts';
 
 /** Command-line interface for movie database operations. */
-export const program = new Command().description(
-  'CLI for movie database operations',
-);
+export const program = new Command()
+  .description('CLI for movie database operations')
+  .option('-p, --path <path>', 'path to the SQLite database file');
+
+/**
+ * Resolves the database path using subcommand options falling back to global options.
+ */
+function getTargetDatabasePath(options?: { path?: string }): string {
+  return options?.path ?? program.opts().path ?? DEFAULT_DATABASE_PATH;
+}
 
 program
   .command('create-database')
   .description('Create and initialize the movies database schema')
-  .option(
-    '-p, --path <path>',
-    'path to the SQLite database file',
-    DEFAULT_DATABASE_PATH,
-  )
-  .action(({ path }: { path: string }) => {
-    const database = getDatabase(path);
+  .option('-p, --path <path>', 'path to the SQLite database file')
+  .action((options: { path?: string }) => {
+    const dbPath = getTargetDatabasePath(options);
+    const database = getDatabase(dbPath);
     database.close();
-    console.log(`Database available at ${resolve(path)}`);
+    console.log(`Database available at ${resolve(dbPath)}`);
   });
 
 program
   .command('add-genres <csv-file>')
   .description('Import or update genres from a CSV file')
-  .option(
-    '-p, --path <path>',
-    'path to the SQLite database file',
-    DEFAULT_DATABASE_PATH,
-  )
-  .action((csvFile: string, { path }: { path: string }) => {
+  .option('-p, --path <path>', 'path to the SQLite database file')
+  .action((csvFile: string, options: { path?: string }) => {
     // Validate CSV file before opening the database connection
     const genres = parseGenresCsv(csvFile);
-    const database = getDatabase(path);
+    const dbPath = getTargetDatabasePath(options);
+    const database = getDatabase(dbPath);
     try {
       upsertGenres(database, genres);
       console.log(
-        `Imported ${genres.length} genres into database at ${resolve(path)}`,
+        `Imported ${genres.length} genres into database at ${resolve(dbPath)}`,
       );
     } finally {
       database.close();
@@ -52,17 +57,50 @@ program
 program
   .command('clean-genres')
   .description('Remove genres that are not associated with any movie')
-  .option(
-    '-p, --path <path>',
-    'path to the SQLite database file',
-    DEFAULT_DATABASE_PATH,
-  )
-  .action(({ path }: { path: string }) => {
-    const database = getDatabase(path);
+  .option('-p, --path <path>', 'path to the SQLite database file')
+  .action((options: { path?: string }) => {
+    const dbPath = getTargetDatabasePath(options);
+    const database = getDatabase(dbPath);
     try {
       const removedCount = cleanUnusedGenres(database);
       console.log(
-        `Cleaned ${removedCount} unused genres from database at ${resolve(path)}`,
+        `Cleaned ${removedCount} unused genres from database at ${resolve(dbPath)}`,
+      );
+    } finally {
+      database.close();
+    }
+  });
+
+program
+  .command('add-countries <csv-file>')
+  .description('Import or update countries from a CSV file')
+  .option('-p, --path <path>', 'path to the SQLite database file')
+  .action((csvFile: string, options: { path?: string }) => {
+    // Validate CSV file before opening the database connection
+    const countries = parseCountriesCsv(csvFile);
+    const dbPath = getTargetDatabasePath(options);
+    const database = getDatabase(dbPath);
+    try {
+      upsertCountries(database, countries);
+      console.log(
+        `Imported ${countries.length} countries into database at ${resolve(dbPath)}`,
+      );
+    } finally {
+      database.close();
+    }
+  });
+
+program
+  .command('clean-countries')
+  .description('Remove countries that are not associated with any movie')
+  .option('-p, --path <path>', 'path to the SQLite database file')
+  .action((options: { path?: string }) => {
+    const dbPath = getTargetDatabasePath(options);
+    const database = getDatabase(dbPath);
+    try {
+      const removedCount = cleanUnusedCountries(database);
+      console.log(
+        `Cleaned ${removedCount} unused countries from database at ${resolve(dbPath)}`,
       );
     } finally {
       database.close();
