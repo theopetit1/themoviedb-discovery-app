@@ -69,3 +69,11 @@ export type MovieDetails = Omit<
 export type ApiErrorResponse = {
   error: string;
 };
+
+/**
+ * TypeScript type for a genre entity stored in the database.
+ */
+export type Genre = {
+  id: number;
+  name: string;
+};
