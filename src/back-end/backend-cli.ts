@@ -2,9 +2,27 @@
 import { Command } from 'commander';
 import { resolve } from 'node:path';
 import { DEFAULT_DATABASE_PATH, getDatabase } from './database/schema.ts';
+import {
+  cleanUnusedGenres,
+  upsertGenres,
+} from './database/genre-repository.ts';
+import { parseGenresCsv } from './utils/csv-parser.ts';
 
 /** Command-line interface for movie database operations. */
-const program = new Command().description('CLI for movie database operations');
+export const program = new Command()
+  .description('CLI for movie database operations')
+  .option(
+    '-p, --path <path>',
+    'path to the SQLite database file',
+    DEFAULT_DATABASE_PATH,
+  );
+
+/**
+ * Resolves the database path using subcommand options falling back to global options.
+ */
+function getTargetDatabasePath(options?: { path?: string }): string {
+  return options?.path ?? program.opts().path ?? DEFAULT_DATABASE_PATH;
+}
 
 program
   .command('create-database')
@@ -14,10 +32,55 @@ program
     'path to the SQLite database file',
     DEFAULT_DATABASE_PATH,
   )
-  .action(({ path }: { path: string }) => {
-    const database = getDatabase(path);
+  .action((options: { path?: string }) => {
+    const dbPath = getTargetDatabasePath(options);
+    const database = getDatabase(dbPath);
     database.close();
-    console.log(`Database available at ${resolve(path)}`);
+    console.log(`Database available at ${resolve(dbPath)}`);
+  });
+
+program
+  .command('add-genres <csv-file>')
+  .description('Import or update genres from a CSV file')
+  .option(
+    '-p, --path <path>',
+    'path to the SQLite database file',
+    DEFAULT_DATABASE_PATH,
+  )
+  .action((csvFile: string, options: { path?: string }) => {
+    // Validate CSV file before opening the database connection
+    const genres = parseGenresCsv(csvFile);
+    const dbPath = getTargetDatabasePath(options);
+    const database = getDatabase(dbPath);
+    try {
+      upsertGenres(database, genres);
+      console.log(
+        `Imported ${genres.length} genres into database at ${resolve(dbPath)}`,
+      );
+    } finally {
+      database.close();
+    }
+  });
+
+program
+  .command('clean-genres')
+  .description('Remove genres that are not associated with any movie')
+  .option(
+    '-p, --path <path>',
+    'path to the SQLite database file',
+    DEFAULT_DATABASE_PATH,
+  )
+  .action((options: { path?: string }) => {
+    const dbPath = getTargetDatabasePath(options);
+    const database = getDatabase(dbPath);
+    try {
+      const removedCount = cleanUnusedGenres(database);
+      console.log(
+        `Cleaned ${removedCount} unused genres from database at ${resolve(dbPath)}`,
+      );
+    } finally {
+      database.close();
+    }
   });
 
 program.parse();
