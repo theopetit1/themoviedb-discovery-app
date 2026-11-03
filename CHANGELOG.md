@@ -9,6 +9,11 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
 ### Ajouté
 
+- **DASHBOARD-06** : Fonction `parseCountriesCsv` dans `src/back-end/utils/csv-parser.ts` avec validation ISO 2 lettres majuscules.
+- **DASHBOARD-06** : Fonction transactionnelle `cleanUnusedCountries` dans `src/back-end/database/country-repository.ts`.
+- **DASHBOARD-06** : Sous-commandes CLI `add-countries <csv-file>` et `clean-countries` dans `src/back-end/backend-cli.ts`.
+- **DASHBOARD-06** : Jeu de données d'exemple dans `data/countries.csv`.
+- **DASHBOARD-06** : Tests unitaires et d'intégration à 100 % de couverture.
 - **DASHBOARD-05** : Module `country-repository.ts` pour la recherche par code, le listing ordonné et l'insertion/mise à jour transactionnelle des pays dans SQLite.
 - **DASHBOARD-05** : Définition TypeScript du type `Country` dans `MoviesTypes.ts`.
 - **DASHBOARD-05** : Tests unitaires complets pour `country-repository.ts` avec une couverture de code à 100 %.
