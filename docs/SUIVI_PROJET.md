@@ -23,7 +23,7 @@ Ce document sert de **fil conducteur et de journal de bord technique** pour le s
 | **DASHBOARD-02**          | Mettre en place le schéma SQLite via CLI          | backend  |    P1    |   M    | ✅ Terminé | `develop` (socle)                 | 100%  |
 | **DASHBOARD-03**          | Créer et mettre à jour les genres                 | backend  |    P1    |   M    | ✅ Terminé | `feature/DASHBOARD-03-genres`     | 100%  |
 | **DASHBOARD-04**          | Importer genres depuis CSV & nettoyer inutilisés  | backend  |    P2    |   M    | ✅ Terminé | `feature/DASHBOARD-04-genres-csv` | 100%  |
-| **DASHBOARD-05**          | Créer et mettre à jour les pays                   | backend  |    P1    |   M    | ⏳ À faire | -                                 |   -   |
+| **DASHBOARD-05**          | Créer et mettre à jour les pays                   | backend  |    P1    |   M    | ✅ Terminé | `feature/DASHBOARD-05-countries`  | 100%  |
 | **DASHBOARD-06**          | Importer pays depuis CSV & nettoyer inutilisés    | backend  |    P2    |   M    | ⏳ À faire | -                                 |   -   |
 | **DASHBOARD-07**          | Exposer films par année via API Discover          | backend  |    P2    |   M    | ⏳ À faire | -                                 |   -   |
 | **DASHBOARD-08**          | Créer et mettre à jour les films                  | backend  |    P3    |   M    | ⏳ À faire | -                                 |   -   |
@@ -85,5 +85,29 @@ Ce document sert de **fil conducteur et de journal de bord technique** pour le s
 #### Preuves de Validation
 
 - Vitest : **74/74 tests unitaires passés avec succès**.
+- Couverture globale du projet : **100 % Stmts, 100 % Branch, 100 % Funcs, 100 % Lines**.
+- Linters : 0 avertissement, 0 erreur (`oxlint`, `oxfmt`).
+
+---
+
+### Ticket [DASHBOARD-05] : Créer et mettre à jour les pays
+
+- **Issue liée** : [#5](https://github.com/theopetit1/themoviedb-discovery-app/issues/5)
+- **Branche** : `feature/DASHBOARD-05-countries`
+- **Fichiers créés / modifiés** :
+  - `src/back-end/types/MoviesTypes.ts` : Définition du type d'entité `Country` (`code: string; name: string;`).
+  - `src/back-end/database/country-repository.ts` : Implémentation du repository des pays (`getCountryByCode`, `listCountries` trié par code ascendant, `upsertCountries` transactionnel).
+  - `src/back-end/database/country-repository.test.ts` : 10 tests unitaires sur base SQLite en mémoire (recherche existant/inexistant, liste ordonnée, tableaux/itérables/générateurs, entrées vides, déduplication et conservation du dernier libellé, validation défensive et rollback).
+
+#### Choix d'Architecture & Conception
+
+1. **Isolation des responsabilités (Repository Pattern)** : Découplage strict de l'accès aux données de pays via `country-repository.ts`, permettant une réutilisation aisée pour les futurs imports CSV et services de synchronisation API.
+2. **Gestion transactionnelle et intégrité** : Encapsulation complète des insertions/mises à jour dans une transaction SQLite (`BEGIN TRANSACTION` / `COMMIT` / `ROLLBACK`). En cas d'anomalie ou de format non conforme, la base conserve son état initial.
+3. **Idempotence avec clause SQLite `ON CONFLICT`** : Utilisation de `INSERT INTO countries ... ON CONFLICT(code) DO UPDATE SET name = excluded.name` pour garantir l'absence de doublons et le remplacement immédiat du libellé par la dernière occurrence fournie.
+4. **Validation stricte à l'entrée** : Contrôle du type et de la non-vacuité du code pays et du libellé pour éviter l'injection de données corrompues.
+
+#### Preuves de Validation
+
+- Vitest : **84/84 tests unitaires passés avec succès**.
 - Couverture globale du projet : **100 % Stmts, 100 % Branch, 100 % Funcs, 100 % Lines**.
 - Linters : 0 avertissement, 0 erreur (`oxlint`, `oxfmt`).

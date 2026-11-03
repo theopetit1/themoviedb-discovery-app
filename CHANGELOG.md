@@ -9,6 +9,9 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
 ### Ajouté
 
+- **DASHBOARD-05** : Module `country-repository.ts` pour la recherche par code, le listing ordonné et l'insertion/mise à jour transactionnelle des pays dans SQLite.
+- **DASHBOARD-05** : Définition TypeScript du type `Country` dans `MoviesTypes.ts`.
+- **DASHBOARD-05** : Tests unitaires complets pour `country-repository.ts` avec une couverture de code à 100 %.
 - **DASHBOARD-04** : Parseur CSV RFC 4180 dans `src/back-end/utils/csv-parser.ts` avec support BOM UTF-8, quotes et validation d'en-têtes.
 - **DASHBOARD-04** : Fonction transactionnelle `cleanUnusedGenres` dans `src/back-end/database/genre-repository.ts`.
 - **DASHBOARD-04** : Commandes CLI `add-genres <csv-file>` et `clean-genres` dans `src/back-end/backend-cli.ts`.
