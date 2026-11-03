@@ -1,7 +1,8 @@
 import { DatabaseSync } from 'node:sqlite';
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { initializeSchema } from './schema';
 import {
+  cleanUnusedCountries,
   getCountryByCode,
   listCountries,
   upsertCountries,
@@ -153,6 +154,55 @@ describe('country-repository.ts', () => {
 
       // Verify rollback preserved existing state
       expect(listCountries(database)).toEqual([{ code: 'FR', name: 'France' }]);
+    });
+  });
+
+  describe('cleanUnusedCountries', () => {
+    it('returns 0 when no countries exist', () => {
+      expect(cleanUnusedCountries(database)).toBe(0);
+    });
+
+    it('deletes only countries that are not associated with any movie', () => {
+      upsertCountries(database, [
+        { code: 'FR', name: 'France' },
+        { code: 'US', name: 'États-Unis' },
+        { code: 'DE', name: 'Allemagne' },
+      ]);
+
+      // Associate movie 1 with France (FR)
+      database
+        .prepare(`
+          INSERT INTO movies (id, title, original_title, original_language, overview, collected_at)
+          VALUES (1, 'Test Movie', 'Test Movie', 'fr', 'Overview', '2026-11-03')
+        `)
+        .run();
+      database
+        .prepare(
+          "INSERT INTO production_countries (movie_id, country_code) VALUES (1, 'FR')",
+        )
+        .run();
+
+      const deletedCount = cleanUnusedCountries(database);
+
+      expect(deletedCount).toBe(2);
+      expect(listCountries(database)).toEqual([{ code: 'FR', name: 'France' }]);
+    });
+
+    it('rolls back and rethrows if an error occurs during cleanup', () => {
+      const originalPrepare = database.prepare.bind(database);
+      const prepareSpy = vi
+        .spyOn(database, 'prepare')
+        .mockImplementation((sql: string) => {
+          if (sql.includes('DELETE FROM countries')) {
+            throw new Error('Database error during country cleanup');
+          }
+          return originalPrepare(sql);
+        });
+
+      expect(() => cleanUnusedCountries(database)).toThrow(
+        'Database error during country cleanup',
+      );
+      prepareSpy.mockRestore();
     });
   });
 });

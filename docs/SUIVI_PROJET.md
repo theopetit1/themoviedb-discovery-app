@@ -17,22 +17,22 @@ Ce document sert de **fil conducteur et de journal de bord technique** pour le s
 
 ## 📊 Matrice d'avancement des Tickets
 
-| Ticket                    | Titre                                             |  Scope   | Priorité | Taille |   Statut   | Branche                           | Tests |
-| :------------------------ | :------------------------------------------------ | :------: | :------: | :----: | :--------: | :-------------------------------- | :---: |
-| **DASHBOARD-01**          | Spécifier le modèle de données du tableau de bord | backend  |    P1    |   S    | ✅ Terminé | `develop` (socle)                 |   -   |
-| **DASHBOARD-02**          | Mettre en place le schéma SQLite via CLI          | backend  |    P1    |   M    | ✅ Terminé | `develop` (socle)                 | 100%  |
-| **DASHBOARD-03**          | Créer et mettre à jour les genres                 | backend  |    P1    |   M    | ✅ Terminé | `feature/DASHBOARD-03-genres`     | 100%  |
-| **DASHBOARD-04**          | Importer genres depuis CSV & nettoyer inutilisés  | backend  |    P2    |   M    | ✅ Terminé | `feature/DASHBOARD-04-genres-csv` | 100%  |
-| **DASHBOARD-05**          | Créer et mettre à jour les pays                   | backend  |    P1    |   M    | ✅ Terminé | `feature/DASHBOARD-05-countries`  | 100%  |
-| **DASHBOARD-06**          | Importer pays depuis CSV & nettoyer inutilisés    | backend  |    P2    |   M    | ⏳ À faire | -                                 |   -   |
-| **DASHBOARD-07**          | Exposer films par année via API Discover          | backend  |    P2    |   M    | ⏳ À faire | -                                 |   -   |
-| **DASHBOARD-08**          | Créer et mettre à jour les films                  | backend  |    P3    |   M    | ⏳ À faire | -                                 |   -   |
-| **DASHBOARD-09**          | Importer/mettre à jour films depuis CSV           | backend  |    P3    |   M    | ⏳ À faire | -                                 |   -   |
-| **DASHBOARD-10**          | Service de mise à jour films/genres/pays via API  | backend  |    P3    |   L    | ⏳ À faire | -                                 |   -   |
-| **DASHBOARD-11**          | Page Dashboard sans widgets                       | frontend |    P3    |   M    | ⏳ À faire | -                                 |   -   |
-| **DASHBOARD-12**          | Mise en œuvre de Storybook pour widgets           | frontend |    P3    |   S    | ⏳ À faire | -                                 |   -   |
-| **DASHBOARD-13** à **24** | Widgets d'analyse (durée, note, rentabilité...)   | frontend |    P3    |   S    | ⏳ À faire | -                                 |   -   |
-| **DASHBOARD-25**          | Intégrer les widgets dans le dashboard            | frontend |    P3    |   M    | ⏳ À faire | -                                 |   -   |
+| Ticket                    | Titre                                             |  Scope   | Priorité | Taille |   Statut   | Branche                              | Tests |
+| :------------------------ | :------------------------------------------------ | :------: | :------: | :----: | :--------: | :----------------------------------- | :---: |
+| **DASHBOARD-01**          | Spécifier le modèle de données du tableau de bord | backend  |    P1    |   S    | ✅ Terminé | `develop` (socle)                    |   -   |
+| **DASHBOARD-02**          | Mettre en place le schéma SQLite via CLI          | backend  |    P1    |   M    | ✅ Terminé | `develop` (socle)                    | 100%  |
+| **DASHBOARD-03**          | Créer et mettre à jour les genres                 | backend  |    P1    |   M    | ✅ Terminé | `feature/DASHBOARD-03-genres`        | 100%  |
+| **DASHBOARD-04**          | Importer genres depuis CSV & nettoyer inutilisés  | backend  |    P2    |   M    | ✅ Terminé | `feature/DASHBOARD-04-genres-csv`    | 100%  |
+| **DASHBOARD-05**          | Créer et mettre à jour les pays                   | backend  |    P1    |   M    | ✅ Terminé | `feature/DASHBOARD-05-countries`     | 100%  |
+| **DASHBOARD-06**          | Importer pays depuis CSV & nettoyer inutilisés    | backend  |    P2    |   M    | ✅ Terminé | `feature/DASHBOARD-06-countries-csv` | 100%  |
+| **DASHBOARD-07**          | Exposer films par année via API Discover          | backend  |    P2    |   M    | ⏳ À faire | -                                    |   -   |
+| **DASHBOARD-08**          | Créer et mettre à jour les films                  | backend  |    P3    |   M    | ⏳ À faire | -                                    |   -   |
+| **DASHBOARD-09**          | Importer/mettre à jour films depuis CSV           | backend  |    P3    |   M    | ⏳ À faire | -                                    |   -   |
+| **DASHBOARD-10**          | Service de mise à jour films/genres/pays via API  | backend  |    P3    |   L    | ⏳ À faire | -                                    |   -   |
+| **DASHBOARD-11**          | Page Dashboard sans widgets                       | frontend |    P3    |   M    | ⏳ À faire | -                                    |   -   |
+| **DASHBOARD-12**          | Mise en œuvre de Storybook pour widgets           | frontend |    P3    |   S    | ⏳ À faire | -                                    |   -   |
+| **DASHBOARD-13** à **24** | Widgets d'analyse (durée, note, rentabilité...)   | frontend |    P3    |   S    | ⏳ À faire | -                                    |   -   |
+| **DASHBOARD-25**          | Intégrer les widgets dans le dashboard            | frontend |    P3    |   M    | ⏳ À faire | -                                    |   -   |
 
 ---
 
@@ -109,5 +109,33 @@ Ce document sert de **fil conducteur et de journal de bord technique** pour le s
 #### Preuves de Validation
 
 - Vitest : **84/84 tests unitaires passés avec succès**.
+- Couverture globale du projet : **100 % Stmts, 100 % Branch, 100 % Funcs, 100 % Lines**.
+- Linters : 0 avertissement, 0 erreur (`oxlint`, `oxfmt`).
+
+---
+
+### Ticket [DASHBOARD-06] : Importer les pays depuis un CSV et nettoyer les pays inutilisés
+
+- **Issue liée** : [#6](https://github.com/theopetit1/themoviedb-discovery-app/issues/6)
+- **Branche** : `feature/DASHBOARD-06-countries-csv`
+- **Fichiers créés / modifiés** :
+  - `src/back-end/utils/csv-parser.ts` : Fonction `parseCountriesCsv` (RFC 4180, en-têtes `code` et `name` insensibles à la casse, format code ISO 2 lettres majuscules `/^[A-Z]{2}$/`, libellé non vide, support fichier ou texte brut).
+  - `src/back-end/utils/csv-parser.test.ts` : Tests complets de validation et d'analyse des CSV de pays.
+  - `src/back-end/database/country-repository.ts` : Fonction `cleanUnusedCountries` transactionnelle (`DELETE FROM countries WHERE code NOT IN (SELECT DISTINCT country_code FROM production_countries)`).
+  - `src/back-end/database/country-repository.test.ts` : Tests de nettoyage et de rollback en cas d'erreur.
+  - `src/back-end/backend-cli.ts` : Commandes CLI `add-countries <csv-file>` et `clean-countries` avec prise en charge de l'option `-p, --path` globale ou par sous-commande.
+  - `src/back-end/backend-cli.test.ts` : Tests d'intégration du CLI pour l'import et le nettoyage des pays.
+  - `data/countries.csv` : Jeu de données de test et d'exemple contenant des pays de référence.
+
+#### Choix d'Architecture & Conception
+
+1. **Validation stricte des codes ISO 3166-1 alpha-2** : Les codes pays sont validés par l'expression régulière `/^[A-Z]{2}$/` avant toute tentative d'insertion en base, garantissant la qualité des données.
+2. **Support de l'option `--path` globale et par commande** : Résolution unifiée du chemin SQLite permettant son positionnement indifféremment avant la sous-commande (`node backend-cli.ts --path ... add-countries`) ou après (`node backend-cli.ts add-countries ... --path ...`).
+3. **Validation Fail Fast** : Le fichier CSV est analysé et validé avant d'ouvrir la connexion SQLite, évitant l'allocation inutile de ressources ou les verrous en cas d'erreur de saisie.
+4. **Intégrité référentielle** : Suppression ciblée uniquement des pays absents de la table relationnelle `production_countries`.
+
+#### Preuves de Validation
+
+- Vitest : **103/103 tests unitaires passés avec succès**.
 - Couverture globale du projet : **100 % Stmts, 100 % Branch, 100 % Funcs, 100 % Lines**.
 - Linters : 0 avertissement, 0 erreur (`oxlint`, `oxfmt`).

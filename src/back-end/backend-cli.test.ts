@@ -15,6 +15,13 @@ const parseGenresCsvMock = vi.fn(() => [
   { id: 35, name: 'Comédie' },
 ]);
 
+const upsertCountriesMock = vi.fn();
+const cleanUnusedCountriesMock = vi.fn(() => 5);
+const parseCountriesCsvMock = vi.fn(() => [
+  { code: 'FR', name: 'France' },
+  { code: 'US', name: 'États-Unis' },
+]);
+
 vi.mock('./database/schema.ts', () => ({
   DEFAULT_DATABASE_PATH,
   getDatabase: getDatabaseMock,
@@ -25,8 +32,14 @@ vi.mock('./database/genre-repository.ts', () => ({
   cleanUnusedGenres: cleanUnusedGenresMock,
 }));
 
+vi.mock('./database/country-repository.ts', () => ({
+  upsertCountries: upsertCountriesMock,
+  cleanUnusedCountries: cleanUnusedCountriesMock,
+}));
+
 vi.mock('./utils/csv-parser.ts', () => ({
   parseGenresCsv: parseGenresCsvMock,
+  parseCountriesCsv: parseCountriesCsvMock,
 }));
 
 /**
@@ -165,6 +178,142 @@ describe('backend-cli.ts', () => {
         expect(closeMock).toHaveBeenCalledOnce();
         expect(logSpy).toHaveBeenCalledWith(
           `Cleaned 3 unused genres from database at ${resolve(customDatabasePath)}`,
+        );
+      } finally {
+        logSpy.mockRestore();
+      }
+    });
+  });
+
+  describe('add-countries', () => {
+    it('parses CSV, opens default database, inserts countries and closes database', async () => {
+      const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
+      try {
+        await runCliWithArgs(['add-countries', './data/countries.csv']);
+
+        expect(parseCountriesCsvMock).toHaveBeenCalledWith(
+          './data/countries.csv',
+        );
+        expect(getDatabaseMock).toHaveBeenCalledWith(DEFAULT_DATABASE_PATH);
+        expect(upsertCountriesMock).toHaveBeenCalled();
+        expect(closeMock).toHaveBeenCalledOnce();
+        expect(logSpy).toHaveBeenCalledWith(
+          `Imported 2 countries into database at ${resolve(DEFAULT_DATABASE_PATH)}`,
+        );
+      } finally {
+        logSpy.mockRestore();
+      }
+    });
+
+    it('uses custom --path when importing countries', async () => {
+      const customDatabasePath = './data/custom-movies.sqlite';
+      const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
+      try {
+        await runCliWithArgs([
+          'add-countries',
+          './data/countries.csv',
+          '--path',
+          customDatabasePath,
+        ]);
+
+        expect(parseCountriesCsvMock).toHaveBeenCalledWith(
+          './data/countries.csv',
+        );
+        expect(getDatabaseMock).toHaveBeenCalledWith(customDatabasePath);
+        expect(upsertCountriesMock).toHaveBeenCalled();
+        expect(closeMock).toHaveBeenCalledOnce();
+        expect(logSpy).toHaveBeenCalledWith(
+          `Imported 2 countries into database at ${resolve(customDatabasePath)}`,
+        );
+      } finally {
+        logSpy.mockRestore();
+      }
+    });
+
+    it('uses global --path placed before subcommand when importing countries', async () => {
+      const customDatabasePath = './data/custom-movies.sqlite';
+      const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
+      try {
+        await runCliWithArgs([
+          '--path',
+          customDatabasePath,
+          'add-countries',
+          './data/countries.csv',
+        ]);
+
+        expect(parseCountriesCsvMock).toHaveBeenCalledWith(
+          './data/countries.csv',
+        );
+        expect(getDatabaseMock).toHaveBeenCalledWith(customDatabasePath);
+        expect(upsertCountriesMock).toHaveBeenCalled();
+        expect(closeMock).toHaveBeenCalledOnce();
+        expect(logSpy).toHaveBeenCalledWith(
+          `Imported 2 countries into database at ${resolve(customDatabasePath)}`,
+        );
+      } finally {
+        logSpy.mockRestore();
+      }
+    });
+
+    it('validates CSV before opening the database and does not open database on failure', async () => {
+      parseCountriesCsvMock.mockImplementationOnce(() => {
+        throw new Error('Invalid Country CSV');
+      });
+
+      await expect(
+        runCliWithArgs(['add-countries', './data/invalid.csv']),
+      ).rejects.toThrow('Invalid Country CSV');
+
+      expect(getDatabaseMock).not.toHaveBeenCalled();
+      expect(closeMock).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('clean-countries', () => {
+    it('cleans unused countries on default database and closes connection', async () => {
+      const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
+      try {
+        await runCliWithArgs(['clean-countries']);
+
+        expect(getDatabaseMock).toHaveBeenCalledWith(DEFAULT_DATABASE_PATH);
+        expect(cleanUnusedCountriesMock).toHaveBeenCalled();
+        expect(closeMock).toHaveBeenCalledOnce();
+        expect(logSpy).toHaveBeenCalledWith(
+          `Cleaned 5 unused countries from database at ${resolve(DEFAULT_DATABASE_PATH)}`,
+        );
+      } finally {
+        logSpy.mockRestore();
+      }
+    });
+
+    it('uses custom --path when cleaning unused countries', async () => {
+      const customDatabasePath = './data/custom-movies.sqlite';
+      const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
+      try {
+        await runCliWithArgs(['clean-countries', '--path', customDatabasePath]);
+
+        expect(getDatabaseMock).toHaveBeenCalledWith(customDatabasePath);
+        expect(cleanUnusedCountriesMock).toHaveBeenCalled();
+        expect(closeMock).toHaveBeenCalledOnce();
+        expect(logSpy).toHaveBeenCalledWith(
+          `Cleaned 5 unused countries from database at ${resolve(customDatabasePath)}`,
+        );
+      } finally {
+        logSpy.mockRestore();
+      }
+    });
+
+    it('uses global --path placed before subcommand when cleaning unused countries', async () => {
+      const customDatabasePath = './data/custom-movies.sqlite';
+      const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
+      try {
+        await runCliWithArgs(['--path', customDatabasePath, 'clean-countries']);
+
+        expect(getDatabaseMock).toHaveBeenCalledWith(customDatabasePath);
+        expect(cleanUnusedCountriesMock).toHaveBeenCalled();
+        expect(closeMock).toHaveBeenCalledOnce();
+        expect(logSpy).toHaveBeenCalledWith(
+          `Cleaned 5 unused countries from database at ${resolve(customDatabasePath)}`,
         );
       } finally {
         logSpy.mockRestore();

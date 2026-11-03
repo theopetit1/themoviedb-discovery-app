@@ -2,7 +2,7 @@ import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { parseCsvRows, parseGenresCsv } from './csv-parser';
+import { parseCountriesCsv, parseCsvRows, parseGenresCsv } from './csv-parser';
 
 describe('csv-parser.ts', () => {
   describe('parseCsvRows', () => {
@@ -125,6 +125,76 @@ describe('csv-parser.ts', () => {
 
     it('throws error when name is empty or only whitespace', () => {
       expect(() => parseGenresCsv('id,name\n10,   ', true)).toThrow(
+        /name must be non-empty/,
+      );
+    });
+  });
+
+  describe('parseCountriesCsv', () => {
+    it('reads CSV directly from a file path when isContent is false', () => {
+      const tempDir = mkdtempSync(join(tmpdir(), 'countries-csv-test-'));
+      const filePath = join(tempDir, 'countries.csv');
+      writeFileSync(filePath, 'code,name\nFR,France\n', 'utf-8');
+      try {
+        const countries = parseCountriesCsv(filePath);
+        expect(countries).toEqual([{ code: 'FR', name: 'France' }]);
+      } finally {
+        rmSync(tempDir, { recursive: true, force: true });
+      }
+    });
+
+    it('parses valid CSV content with code and name in any order and case', () => {
+      const csv = 'NAME,CODE\nFrance,FR\n"United States",US\n';
+      const countries = parseCountriesCsv(csv, true);
+      expect(countries).toEqual([
+        { code: 'FR', name: 'France' },
+        { code: 'US', name: 'United States' },
+      ]);
+    });
+
+    it('returns an empty array when CSV only contains headers', () => {
+      expect(parseCountriesCsv('code,name\n', true)).toEqual([]);
+    });
+
+    it('throws error when CSV is completely empty', () => {
+      expect(() => parseCountriesCsv('', true)).toThrow(/file is empty/);
+    });
+
+    it('throws error when headers length is not 2', () => {
+      expect(() =>
+        parseCountriesCsv('code,name,extra\nFR,France,X', true),
+      ).toThrow(/expected exactly 'code' and 'name'/);
+    });
+
+    it('throws error when code or name header is missing', () => {
+      expect(() => parseCountriesCsv('iso,name\nFR,France', true)).toThrow(
+        /missing required columns/,
+      );
+    });
+
+    it('throws error when row columns length is invalid', () => {
+      expect(() =>
+        parseCountriesCsv('code,name\nFR,France,Extra', true),
+      ).toThrow(/expected 2 columns/);
+    });
+
+    it('throws error when country code is not exactly 2 uppercase letters', () => {
+      expect(() => parseCountriesCsv('code,name\nfr,France', true)).toThrow(
+        /Country code must be exactly 2 uppercase letters/,
+      );
+      expect(() => parseCountriesCsv('code,name\nFRA,France', true)).toThrow(
+        /Country code must be exactly 2 uppercase letters/,
+      );
+      expect(() => parseCountriesCsv('code,name\nF,France', true)).toThrow(
+        /Country code must be exactly 2 uppercase letters/,
+      );
+      expect(() => parseCountriesCsv('code,name\nF1,France', true)).toThrow(
+        /Country code must be exactly 2 uppercase letters/,
+      );
+    });
+
+    it('throws error when name is empty or only whitespace', () => {
+      expect(() => parseCountriesCsv('code,name\nFR,   ', true)).toThrow(
         /name must be non-empty/,
       );
     });

@@ -1,5 +1,5 @@
 import { readFileSync } from 'node:fs';
-import type { Genre } from '../types/MoviesTypes';
+import type { Country, Genre } from '../types/MoviesTypes';
 
 /**
  * Parses raw CSV text into an array of tokenized rows.
@@ -162,4 +162,75 @@ export function parseGenresCsv(
   }
 
   return genres;
+}
+
+/**
+ * Parses and validates a CSV file containing countries.
+ * Requires exactly 'code' and 'name' headers (case-insensitive, any order).
+ * Country code must be exactly two uppercase letters (e.g. 'FR', 'US').
+ * Name must be non-empty.
+ * Empty lines are ignored; a file with only headers returns an empty array.
+ * @param filePathOrContent The file path or raw CSV content string.
+ * @param isContent Whether the first argument is raw CSV content instead of a file path.
+ * @returns An array of validated Country objects.
+ */
+export function parseCountriesCsv(
+  filePathOrContent: string,
+  isContent = false,
+): Country[] {
+  const content = isContent
+    ? filePathOrContent
+    : readFileSync(filePathOrContent, 'utf-8');
+  const rows = parseCsvRows(content);
+
+  if (rows.length === 0) {
+    throw new Error('Invalid CSV: file is empty');
+  }
+
+  const headerRow = rows[0].map((h) => h.toLowerCase());
+  if (headerRow.length !== 2) {
+    throw new Error(
+      `Invalid CSV headers: expected exactly 'code' and 'name', received ${rows[0].join(', ')}`,
+    );
+  }
+
+  const codeIndex = headerRow.indexOf('code');
+  const nameIndex = headerRow.indexOf('name');
+
+  if (codeIndex === -1 || nameIndex === -1) {
+    throw new Error(
+      `Invalid CSV headers: missing required columns 'code' or 'name', received ${rows[0].join(', ')}`,
+    );
+  }
+
+  const countries: Country[] = [];
+  const codeRegex = /^[A-Z]{2}$/;
+
+  for (let i = 1; i < rows.length; i++) {
+    const row = rows[i];
+    if (row.length !== 2) {
+      throw new Error(
+        `Invalid CSV line ${i + 1}: expected 2 columns, received ${row.length}`,
+      );
+    }
+
+    const code = row[codeIndex].trim();
+    const name = row[nameIndex].trim();
+
+    if (!codeRegex.test(code)) {
+      throw new Error(
+        `Invalid country code at line ${i + 1}: '${code}'. Country code must be exactly 2 uppercase letters.`,
+      );
+    }
+
+    if (name.length === 0) {
+      throw new Error(
+        `Invalid country name at line ${i + 1}: name must be non-empty`,
+      );
+    }
+
+    countries.push({ code, name });
+  }
+
+  return countries;
 }
