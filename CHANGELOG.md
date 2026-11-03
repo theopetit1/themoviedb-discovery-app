@@ -9,6 +9,10 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
 ### Ajouté
 
+- **DASHBOARD-04** : Parseur CSV RFC 4180 dans `src/back-end/utils/csv-parser.ts` avec support BOM UTF-8, quotes et validation d'en-têtes.
+- **DASHBOARD-04** : Fonction transactionnelle `cleanUnusedGenres` dans `src/back-end/database/genre-repository.ts`.
+- **DASHBOARD-04** : Commandes CLI `add-genres <csv-file>` et `clean-genres` dans `src/back-end/backend-cli.ts`.
+- **DASHBOARD-04** : Tests unitaires et d'intégration à 100 % de couverture pour l'import CSV et le nettoyage des genres.
 - **DASHBOARD-03** : Module `genre-repository.ts` pour la recherche par identifiant, le listing ordonné et l'insertion/mise à jour transactionnelle des genres dans SQLite.
 - **DASHBOARD-03** : Définition TypeScript du type `Genre` dans `MoviesTypes.ts`.
 - **DASHBOARD-03** : Tests unitaires complets pour `genre-repository.ts` avec une couverture de code à 100 %.
