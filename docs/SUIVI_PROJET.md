@@ -17,22 +17,22 @@ Ce document sert de **fil conducteur et de journal de bord technique** pour le s
 
 ## 📊 Matrice d'avancement des Tickets
 
-| Ticket                    | Titre                                             |  Scope   | Priorité | Taille |   Statut   | Branche                              | Tests |
-| :------------------------ | :------------------------------------------------ | :------: | :------: | :----: | :--------: | :----------------------------------- | :---: |
-| **DASHBOARD-01**          | Spécifier le modèle de données du tableau de bord | backend  |    P1    |   S    | ✅ Terminé | `develop` (socle)                    |   -   |
-| **DASHBOARD-02**          | Mettre en place le schéma SQLite via CLI          | backend  |    P1    |   M    | ✅ Terminé | `develop` (socle)                    | 100%  |
-| **DASHBOARD-03**          | Créer et mettre à jour les genres                 | backend  |    P1    |   M    | ✅ Terminé | `feature/DASHBOARD-03-genres`        | 100%  |
-| **DASHBOARD-04**          | Importer genres depuis CSV & nettoyer inutilisés  | backend  |    P2    |   M    | ✅ Terminé | `feature/DASHBOARD-04-genres-csv`    | 100%  |
-| **DASHBOARD-05**          | Créer et mettre à jour les pays                   | backend  |    P1    |   M    | ✅ Terminé | `feature/DASHBOARD-05-countries`     | 100%  |
-| **DASHBOARD-06**          | Importer pays depuis CSV & nettoyer inutilisés    | backend  |    P2    |   M    | ✅ Terminé | `feature/DASHBOARD-06-countries-csv` | 100%  |
-| **DASHBOARD-07**          | Exposer films par année via API Discover          | backend  |    P2    |   M    | ⏳ À faire | -                                    |   -   |
-| **DASHBOARD-08**          | Créer et mettre à jour les films                  | backend  |    P3    |   M    | ⏳ À faire | -                                    |   -   |
-| **DASHBOARD-09**          | Importer/mettre à jour films depuis CSV           | backend  |    P3    |   M    | ⏳ À faire | -                                    |   -   |
-| **DASHBOARD-10**          | Service de mise à jour films/genres/pays via API  | backend  |    P3    |   L    | ⏳ À faire | -                                    |   -   |
-| **DASHBOARD-11**          | Page Dashboard sans widgets                       | frontend |    P3    |   M    | ⏳ À faire | -                                    |   -   |
-| **DASHBOARD-12**          | Mise en œuvre de Storybook pour widgets           | frontend |    P3    |   S    | ⏳ À faire | -                                    |   -   |
-| **DASHBOARD-13** à **24** | Widgets d'analyse (durée, note, rentabilité...)   | frontend |    P3    |   S    | ⏳ À faire | -                                    |   -   |
-| **DASHBOARD-25**          | Intégrer les widgets dans le dashboard            | frontend |    P3    |   M    | ⏳ À faire | -                                    |   -   |
+| Ticket                    | Titre                                             |  Scope   | Priorité | Taille |   Statut    | Branche                                | Tests |
+| :------------------------ | :------------------------------------------------ | :------: | :------: | :----: | :---------: | :------------------------------------- | :---: |
+| **DASHBOARD-01**          | Spécifier le modèle de données du tableau de bord | backend  |    P1    |   S    | ✅ Terminé  | `develop` (socle)                      |   -   |
+| **DASHBOARD-02**          | Mettre en place le schéma SQLite via CLI          | backend  |    P1    |   M    | ✅ Terminé  | `develop` (socle)                      | 100%  |
+| **DASHBOARD-03**          | Créer et mettre à jour les genres                 | backend  |    P1    |   M    | ✅ Terminé  | `feature/DASHBOARD-03-genres`          | 100%  |
+| **DASHBOARD-04**          | Importer genres depuis CSV & nettoyer inutilisés  | backend  |    P2    |   M    | ✅ Terminé  | `feature/DASHBOARD-04-genres-csv`      | 100%  |
+| **DASHBOARD-05**          | Créer et mettre à jour les pays                   | backend  |    P1    |   M    | ✅ Terminé  | `feature/DASHBOARD-05-countries`       | 100%  |
+| **DASHBOARD-06**          | Importer pays depuis CSV & nettoyer inutilisés    | backend  |    P2    |   M    | ✅ Terminé  | `feature/DASHBOARD-06-countries-csv`   | 100%  |
+| **DASHBOARD-07**          | Exposer films par année via API Discover          | backend  |    P2    |   M    | 🔍 En revue | `feature/DASHBOARD-07-discover-movies` | 100%  |
+| **DASHBOARD-08**          | Créer et mettre à jour les films                  | backend  |    P3    |   M    | ⏳ À faire  | -                                      |   -   |
+| **DASHBOARD-09**          | Importer/mettre à jour films depuis CSV           | backend  |    P3    |   M    | ⏳ À faire  | -                                      |   -   |
+| **DASHBOARD-10**          | Service de mise à jour films/genres/pays via API  | backend  |    P3    |   L    | ⏳ À faire  | -                                      |   -   |
+| **DASHBOARD-11**          | Page Dashboard sans widgets                       | frontend |    P3    |   M    | ⏳ À faire  | -                                      |   -   |
+| **DASHBOARD-12**          | Mise en œuvre de Storybook pour widgets           | frontend |    P3    |   S    | ⏳ À faire  | -                                      |   -   |
+| **DASHBOARD-13** à **24** | Widgets d'analyse (durée, note, rentabilité...)   | frontend |    P3    |   S    | ⏳ À faire  | -                                      |   -   |
+| **DASHBOARD-25**          | Intégrer les widgets dans le dashboard            | frontend |    P3    |   M    | ⏳ À faire  | -                                      |   -   |
 
 ---
 
@@ -137,5 +137,30 @@ Ce document sert de **fil conducteur et de journal de bord technique** pour le s
 #### Preuves de Validation
 
 - Vitest : **103/103 tests unitaires passés avec succès**.
+- Couverture globale du projet : **100 % Stmts, 100 % Branch, 100 % Funcs, 100 % Lines**.
+- Linters : 0 avertissement, 0 erreur (`oxlint`, `oxfmt`).
+
+---
+
+### Ticket [DASHBOARD-07] : Exposer les films par année via l'API Discover
+
+- **Issue liée** : [#7](https://github.com/theopetit1/themoviedb-discovery-app/issues/7)
+- **Branche** : `feature/DASHBOARD-07-discover-movies`
+- **Fichiers créés / modifiés** :
+  - `src/back-end/api/discover-api.ts` : Implémentation du routeur Express pour la route `GET /api/discover/movies`.
+  - `src/back-end/api/discover-api.test.ts` : 7 tests unitaires exhaustifs simulant les réponses TMDB, les cas limites d'années et les erreurs réseau/JSON.
+  - `src/back-end/index.ts` : Enregistrement de `registerDiscoverApi(app)`.
+  - `src/back-end/index.test.ts` : Test de déclaration de la route dans le serveur Express.
+
+#### Choix d'Architecture & Conception
+
+1. **Validation stricte préalable de l'année (Fail Fast)** : Le paramètre `year` est strictement vérifié comme étant une chaîne de 4 chiffres comprise entre 1000 et 9999. Tout format erroné (absent, lettres, tableau, objet, hors intervalle) renvoie immédiatement un code HTTP 400 sans solliciter l'API externe TMDB.
+2. **Paramètres optionnels et valeurs par défaut** : Prise en charge des paramètres `language` (défaut `fr-FR`), `page` (défaut `1`) et `region` (défaut `FR`) avec injection du jeton d'accès sécurisé côté serveur (`tmdbAccessToken`), sans l'exposer au client.
+3. **Transformation du modèle** : Les films retournés par TMDB sont automatiquement filtrés et convertis au format interne de l'application via `toSupportedMovie` (exclusion des champs `adult` et `video`).
+4. **Gestion des pannes et résilience** : En cas de code d'erreur HTTP de TMDB, d'indisponibilité réseau ou de JSON mal formé, l'erreur est logguée côté serveur et une réponse HTTP 500 standardisée `{ error: 'Failed to discover movies' }` est retournée.
+
+#### Preuves de Validation
+
+- Vitest : **111/111 tests unitaires passés avec succès**.
 - Couverture globale du projet : **100 % Stmts, 100 % Branch, 100 % Funcs, 100 % Lines**.
 - Linters : 0 avertissement, 0 erreur (`oxlint`, `oxfmt`).

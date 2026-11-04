@@ -9,6 +9,9 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
 ### Ajouté
 
+- **DASHBOARD-07** : Endpoint `GET /api/discover/movies` dans `src/back-end/api/discover-api.ts` interrogeant l'API Discover de TMDB.
+- **DASHBOARD-07** : Validation stricte des années (4 chiffres, 1000-9999), gestion des valeurs par défaut et conversion des films.
+- **DASHBOARD-07** : Tests unitaires et d'intégration à 100 % de couverture avec simulation des réponses TMDB et des erreurs.
 - **DASHBOARD-06** : Fonction `parseCountriesCsv` dans `src/back-end/utils/csv-parser.ts` avec validation ISO 2 lettres majuscules.
 - **DASHBOARD-06** : Fonction transactionnelle `cleanUnusedCountries` dans `src/back-end/database/country-repository.ts`.
 - **DASHBOARD-06** : Sous-commandes CLI `add-countries <csv-file>` et `clean-countries` dans `src/back-end/backend-cli.ts`.
