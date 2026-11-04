@@ -9,6 +9,9 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
 ### Ajouté
 
+- **DASHBOARD-08** : Modèle TypeScript `DbMovie` dans `src/back-end/types/MoviesTypes.ts`.
+- **DASHBOARD-08** : Repository SQLite complet `movie-repository.ts` (`getMovieById`, `listMovies`, `upsertMovies` transactionnel).
+- **DASHBOARD-08** : Suite de tests unitaires pour `movie-repository.ts` avec 100 % de couverture de code.
 - **DASHBOARD-06** : Fonction `parseCountriesCsv` dans `src/back-end/utils/csv-parser.ts` avec validation ISO 2 lettres majuscules.
 - **DASHBOARD-06** : Fonction transactionnelle `cleanUnusedCountries` dans `src/back-end/database/country-repository.ts`.
 - **DASHBOARD-06** : Sous-commandes CLI `add-countries <csv-file>` et `clean-countries` dans `src/back-end/backend-cli.ts`.
