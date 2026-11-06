@@ -10,7 +10,12 @@ import {
   cleanUnusedCountries,
   upsertCountries,
 } from './database/country-repository.ts';
-import { parseCountriesCsv, parseGenresCsv } from './utils/csv-parser.ts';
+import { upsertMovies } from './database/movie-repository.ts';
+import {
+  parseCountriesCsv,
+  parseGenresCsv,
+  parseMoviesCsv,
+} from './utils/csv-parser.ts';
 
 /** Command-line interface for movie database operations. */
 export const program = new Command()
@@ -101,6 +106,25 @@ program
       const removedCount = cleanUnusedCountries(database);
       console.log(
         `Cleaned ${removedCount} unused countries from database at ${resolve(dbPath)}`,
+      );
+    } finally {
+      database.close();
+    }
+  });
+
+program
+  .command('add-movies <csv-file>')
+  .description('Import or update movies from a CSV file')
+  .option('-p, --path <path>', 'path to the SQLite database file')
+  .action((csvFile: string, options: { path?: string }) => {
+    // Validate CSV file before opening the database connection
+    const movies = parseMoviesCsv(csvFile);
+    const dbPath = getTargetDatabasePath(options);
+    const database = getDatabase(dbPath);
+    try {
+      upsertMovies(database, movies);
+      console.log(
+        `Imported ${movies.length} movies into database at ${resolve(dbPath)}`,
       );
     } finally {
       database.close();
