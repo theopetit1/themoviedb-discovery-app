@@ -2,7 +2,12 @@ import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { parseCountriesCsv, parseCsvRows, parseGenresCsv } from './csv-parser';
+import {
+  parseCountriesCsv,
+  parseCsvRows,
+  parseGenresCsv,
+  parseMoviesCsv,
+} from './csv-parser';
 
 describe('csv-parser.ts', () => {
   describe('parseCsvRows', () => {
@@ -197,6 +202,235 @@ describe('csv-parser.ts', () => {
       expect(() => parseCountriesCsv('code,name\nFR,   ', true)).toThrow(
         /name must be non-empty/,
       );
+    });
+  });
+
+  describe('parseMoviesCsv', () => {
+    const fullHeader =
+      'id,title,original_title,original_language,overview,release_date,popularity,vote_average,vote_count,poster_path,backdrop_path,runtime_minutes,budget,revenue,collected_at,genre_ids,production_country_codes';
+
+    it('parses a valid CSV file with full fields and associations from file', () => {
+      const tempDir = mkdtempSync(join(tmpdir(), 'movies-csv-test-'));
+      const filePath = join(tempDir, 'movies.csv');
+      const csvContent = `${fullHeader}\n550,Fight Club,Fight Club,en,"A ticking-time-bomb insomniac...",1999-10-15,61.4,8.4,26000,/poster.jpg,/backdrop.jpg,139,63000000,100000000,2026-11-06T12:00:00.000Z,18;53,US;DE`;
+
+      writeFileSync(filePath, csvContent, 'utf-8');
+
+      try {
+        const movies = parseMoviesCsv(filePath);
+        expect(movies).toHaveLength(1);
+        expect(movies[0]).toEqual({
+          id: 550,
+          title: 'Fight Club',
+          original_title: 'Fight Club',
+          original_language: 'en',
+          overview: 'A ticking-time-bomb insomniac...',
+          release_date: '1999-10-15',
+          popularity: 61.4,
+          vote_average: 8.4,
+          vote_count: 26000,
+          poster_path: '/poster.jpg',
+          backdrop_path: '/backdrop.jpg',
+          runtime_minutes: 139,
+          budget: 63000000,
+          revenue: 100000000,
+          collected_at: '2026-11-06T12:00:00.000Z',
+          genre_ids: [18, 53],
+          production_country_codes: ['US', 'DE'],
+        });
+      } finally {
+        rmSync(tempDir, { recursive: true, force: true });
+      }
+    });
+
+    it('parses minimal CSV with only required headers and null/empty optional fields', () => {
+      const minimalHeader =
+        'id,title,original_title,original_language,overview';
+      const content = `${minimalHeader}\n10,Title,Original,fr,"Overview"`;
+      const movies = parseMoviesCsv(content, true);
+
+      expect(movies).toHaveLength(1);
+      expect(movies[0].id).toBe(10);
+      expect(movies[0].title).toBe('Title');
+      expect(movies[0].release_date).toBeNull();
+      expect(movies[0].popularity).toBeNull();
+      expect(movies[0].vote_average).toBeNull();
+      expect(movies[0].vote_count).toBeNull();
+      expect(movies[0].poster_path).toBeNull();
+      expect(movies[0].backdrop_path).toBeNull();
+      expect(movies[0].runtime_minutes).toBeNull();
+      expect(movies[0].budget).toBeNull();
+      expect(movies[0].revenue).toBeNull();
+      expect(movies[0].collected_at).toBe('2026-11-06T12:00:00.000Z');
+      expect(movies[0].genre_ids).toEqual([]);
+      expect(movies[0].production_country_codes).toEqual([]);
+    });
+
+    it('returns empty array when CSV contains only headers', () => {
+      expect(
+        parseMoviesCsv(
+          'id,title,original_title,original_language,overview\n',
+          true,
+        ),
+      ).toEqual([]);
+    });
+
+    it('throws error when CSV is empty', () => {
+      expect(() => parseMoviesCsv('', true)).toThrow(/file is empty/);
+    });
+
+    it('throws error when required headers are missing', () => {
+      expect(() => parseMoviesCsv('id,title,overview\n1,A,B', true)).toThrow(
+        /missing required column 'original_title'/,
+      );
+    });
+
+    it('throws error when row columns count does not match header count', () => {
+      expect(() =>
+        parseMoviesCsv(
+          'id,title,original_title,original_language,overview\n1,A,B,fr',
+          true,
+        ),
+      ).toThrow(/expected 5 columns/);
+    });
+
+    it('throws error when id is invalid or exceeds safe integer', () => {
+      const header = 'id,title,original_title,original_language,overview';
+      expect(() => parseMoviesCsv(`${header}\n0,A,B,fr,O`, true)).toThrow(
+        /id must be a positive integer/,
+      );
+      expect(() => parseMoviesCsv(`${header}\n-5,A,B,fr,O`, true)).toThrow(
+        /id must be a positive integer/,
+      );
+      expect(() => parseMoviesCsv(`${header}\nabc,A,B,fr,O`, true)).toThrow(
+        /id must be a positive integer/,
+      );
+      expect(() =>
+        parseMoviesCsv(`${header}\n999999999999999999999,A,B,fr,O`, true),
+      ).toThrow(/id exceeds safe integer limit/);
+    });
+
+    it('throws error when title, original_title or original_language is empty', () => {
+      const header = 'id,title,original_title,original_language,overview';
+      expect(() => parseMoviesCsv(`${header}\n1,   ,B,fr,O`, true)).toThrow(
+        /title must be non-empty/,
+      );
+      expect(() => parseMoviesCsv(`${header}\n1,A,   ,fr,O`, true)).toThrow(
+        /original_title must be non-empty/,
+      );
+      expect(() => parseMoviesCsv(`${header}\n1,A,B,   ,O`, true)).toThrow(
+        /original_language must be non-empty/,
+      );
+    });
+
+    it('throws error when popularity, vote_average or vote_count are invalid', () => {
+      expect(() =>
+        parseMoviesCsv(
+          `${fullHeader}\n1,A,B,fr,O,2020-01-01,-1,5,10,/p,/b,100,10,20,2026-11-06T12:00:00.000Z,,`,
+          true,
+        ),
+      ).toThrow(/Invalid popularity/);
+      expect(() =>
+        parseMoviesCsv(
+          `${fullHeader}\n1,A,B,fr,O,2020-01-01,abc,5,10,/p,/b,100,10,20,2026-11-06T12:00:00.000Z,,`,
+          true,
+        ),
+      ).toThrow(/Invalid popularity/);
+
+      expect(() =>
+        parseMoviesCsv(
+          `${fullHeader}\n1,A,B,fr,O,2020-01-01,5,-0.5,10,/p,/b,100,10,20,2026-11-06T12:00:00.000Z,,`,
+          true,
+        ),
+      ).toThrow(/Invalid vote_average/);
+      expect(() =>
+        parseMoviesCsv(
+          `${fullHeader}\n1,A,B,fr,O,2020-01-01,5,10.5,10,/p,/b,100,10,20,2026-11-06T12:00:00.000Z,,`,
+          true,
+        ),
+      ).toThrow(/Invalid vote_average/);
+      expect(() =>
+        parseMoviesCsv(
+          `${fullHeader}\n1,A,B,fr,O,2020-01-01,5,bad,10,/p,/b,100,10,20,2026-11-06T12:00:00.000Z,,`,
+          true,
+        ),
+      ).toThrow(/Invalid vote_average/);
+
+      expect(() =>
+        parseMoviesCsv(
+          `${fullHeader}\n1,A,B,fr,O,2020-01-01,5,5,-10,/p,/b,100,10,20,2026-11-06T12:00:00.000Z,,`,
+          true,
+        ),
+      ).toThrow(/Invalid vote_count/);
+      expect(() =>
+        parseMoviesCsv(
+          `${fullHeader}\n1,A,B,fr,O,2020-01-01,5,5,10.5,/p,/b,100,10,20,2026-11-06T12:00:00.000Z,,`,
+          true,
+        ),
+      ).toThrow(/Invalid vote_count/);
+      expect(() =>
+        parseMoviesCsv(
+          `${fullHeader}\n1,A,B,fr,O,2020-01-01,5,5,999999999999999999999,/p,/b,100,10,20,2026-11-06T12:00:00.000Z,,`,
+          true,
+        ),
+      ).toThrow(/Invalid vote_count/);
+    });
+
+    it('throws error when runtime_minutes, budget or revenue are invalid', () => {
+      expect(() =>
+        parseMoviesCsv(
+          `${fullHeader}\n1,A,B,fr,O,2020-01-01,5,5,10,/p,/b,0,10,20,2026-11-06T12:00:00.000Z,,`,
+          true,
+        ),
+      ).toThrow(/Invalid runtime_minutes/);
+      expect(() =>
+        parseMoviesCsv(
+          `${fullHeader}\n1,A,B,fr,O,2020-01-01,5,5,10,/p,/b,999999999999999999999,10,20,2026-11-06T12:00:00.000Z,,`,
+          true,
+        ),
+      ).toThrow(/Invalid runtime_minutes/);
+
+      expect(() =>
+        parseMoviesCsv(
+          `${fullHeader}\n1,A,B,fr,O,2020-01-01,5,5,10,/p,/b,100,0,20,2026-11-06T12:00:00.000Z,,`,
+          true,
+        ),
+      ).toThrow(/Invalid budget/);
+      expect(() =>
+        parseMoviesCsv(
+          `${fullHeader}\n1,A,B,fr,O,2020-01-01,5,5,10,/p,/b,100,999999999999999999999,20,2026-11-06T12:00:00.000Z,,`,
+          true,
+        ),
+      ).toThrow(/Invalid budget/);
+
+      expect(() =>
+        parseMoviesCsv(
+          `${fullHeader}\n1,A,B,fr,O,2020-01-01,5,5,10,/p,/b,100,10,0,2026-11-06T12:00:00.000Z,,`,
+          true,
+        ),
+      ).toThrow(/Invalid revenue/);
+      expect(() =>
+        parseMoviesCsv(
+          `${fullHeader}\n1,A,B,fr,O,2020-01-01,5,5,10,/p,/b,100,10,999999999999999999999,2026-11-06T12:00:00.000Z,,`,
+          true,
+        ),
+      ).toThrow(/Invalid revenue/);
+    });
+
+    it('throws error when genre_ids or country_codes are invalid', () => {
+      expect(() =>
+        parseMoviesCsv(
+          `${fullHeader}\n1,A,B,fr,O,2020-01-01,5,5,10,/p,/b,100,10,20,2026-11-06T12:00:00.000Z,bad;12,US`,
+          true,
+        ),
+      ).toThrow(/Invalid genre_id 'bad'/);
+
+      expect(() =>
+        parseMoviesCsv(
+          `${fullHeader}\n1,A,B,fr,O,2020-01-01,5,5,10,/p,/b,100,10,20,2026-11-06T12:00:00.000Z,12,usa`,
+          true,
+        ),
+      ).toThrow(/Invalid country code 'usa'/);
     });
   });
 });
