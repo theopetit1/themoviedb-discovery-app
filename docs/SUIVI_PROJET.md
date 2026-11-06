@@ -17,22 +17,22 @@ Ce document sert de **fil conducteur et de journal de bord technique** pour le s
 
 ## 📊 Matrice d'avancement des Tickets
 
-| Ticket                    | Titre                                             |  Scope   | Priorité | Taille |   Statut    | Branche                                         | Tests |
-| :------------------------ | :------------------------------------------------ | :------: | :------: | :----: | :---------: | :---------------------------------------------- | :---: |
-| **DASHBOARD-01**          | Spécifier le modèle de données du tableau de bord | backend  |    P1    |   S    | ✅ Terminé  | `develop` (socle)                               |   -   |
-| **DASHBOARD-02**          | Mettre en place le schéma SQLite via CLI          | backend  |    P1    |   M    | ✅ Terminé  | `develop` (socle)                               | 100%  |
-| **DASHBOARD-03**          | Créer et mettre à jour les genres                 | backend  |    P1    |   M    | ✅ Terminé  | `feature/DASHBOARD-03-genres`                   | 100%  |
-| **DASHBOARD-04**          | Importer genres depuis CSV & nettoyer inutilisés  | backend  |    P2    |   M    | ✅ Terminé  | `feature/DASHBOARD-04-genres-csv`               | 100%  |
-| **DASHBOARD-05**          | Créer et mettre à jour les pays                   | backend  |    P1    |   M    | ✅ Terminé  | `feature/DASHBOARD-05-countries`                | 100%  |
-| **DASHBOARD-06**          | Importer pays depuis CSV & nettoyer inutilisés    | backend  |    P2    |   M    | ✅ Terminé  | `feature/DASHBOARD-06-countries-csv`            | 100%  |
-| **DASHBOARD-07**          | Exposer films par année via API Discover          | backend  |    P2    |   M    | 🔍 En revue | `feature/DASHBOARD-07-discover-movies` (PR #30) | 100%  |
-| **DASHBOARD-08**          | Créer et mettre à jour les films                  | backend  |    P3    |   M    | 🔍 En revue | `feature/DASHBOARD-08-movies` (PR en attente)   | 100%  |
-| **DASHBOARD-09**          | Importer/mettre à jour films depuis CSV           | backend  |    P3    |   M    | ⏳ À faire  | -                                               |   -   |
-| **DASHBOARD-10**          | Service de mise à jour films/genres/pays via API  | backend  |    P3    |   L    | ⏳ À faire  | -                                               |   -   |
-| **DASHBOARD-11**          | Page Dashboard sans widgets                       | frontend |    P3    |   M    | ⏳ À faire  | -                                               |   -   |
-| **DASHBOARD-12**          | Mise en œuvre de Storybook pour widgets           | frontend |    P3    |   S    | ⏳ À faire  | -                                               |   -   |
-| **DASHBOARD-13** à **24** | Widgets d'analyse (durée, note, rentabilité...)   | frontend |    P3    |   S    | ⏳ À faire  | -                                               |   -   |
-| **DASHBOARD-25**          | Intégrer les widgets dans le dashboard            | frontend |    P3    |   M    | ⏳ À faire  | -                                               |   -   |
+| Ticket                    | Titre                                             |  Scope   | Priorité | Taille |   Statut    | Branche                                           | Tests |
+| :------------------------ | :------------------------------------------------ | :------: | :------: | :----: | :---------: | :------------------------------------------------ | :---: |
+| **DASHBOARD-01**          | Spécifier le modèle de données du tableau de bord | backend  |    P1    |   S    | ✅ Terminé  | `develop` (socle)                                 |   -   |
+| **DASHBOARD-02**          | Mettre en place le schéma SQLite via CLI          | backend  |    P1    |   M    | ✅ Terminé  | `develop` (socle)                                 | 100%  |
+| **DASHBOARD-03**          | Créer et mettre à jour les genres                 | backend  |    P1    |   M    | ✅ Terminé  | `feature/DASHBOARD-03-genres`                     | 100%  |
+| **DASHBOARD-04**          | Importer genres depuis CSV & nettoyer inutilisés  | backend  |    P2    |   M    | ✅ Terminé  | `feature/DASHBOARD-04-genres-csv`                 | 100%  |
+| **DASHBOARD-05**          | Créer et mettre à jour les pays                   | backend  |    P1    |   M    | ✅ Terminé  | `feature/DASHBOARD-05-countries`                  | 100%  |
+| **DASHBOARD-06**          | Importer pays depuis CSV & nettoyer inutilisés    | backend  |    P2    |   M    | ✅ Terminé  | `feature/DASHBOARD-06-countries-csv`              | 100%  |
+| **DASHBOARD-07**          | Exposer films par année via API Discover          | backend  |    P2    |   M    | 🔍 En revue | `feature/DASHBOARD-07-discover-movies` (PR #30)   | 100%  |
+| **DASHBOARD-08**          | Créer et mettre à jour les films                  | backend  |    P3    |   M    | 🔍 En revue | `feature/DASHBOARD-08-movies` (PR #31)            | 100%  |
+| **DASHBOARD-09**          | Importer/mettre à jour films depuis CSV           | backend  |    P3    |   M    | 🔍 En revue | `feature/DASHBOARD-09-movies-csv` (PR en attente) | 100%  |
+| **DASHBOARD-10**          | Service de mise à jour films/genres/pays via API  | backend  |    P3    |   L    | ⏳ À faire  | -                                                 |   -   |
+| **DASHBOARD-11**          | Page Dashboard sans widgets                       | frontend |    P3    |   M    | ⏳ À faire  | -                                                 |   -   |
+| **DASHBOARD-12**          | Mise en œuvre de Storybook pour widgets           | frontend |    P3    |   S    | ⏳ À faire  | -                                                 |   -   |
+| **DASHBOARD-13** à **24** | Widgets d'analyse (durée, note, rentabilité...)   | frontend |    P3    |   S    | ⏳ À faire  | -                                                 |   -   |
+| **DASHBOARD-25**          | Intégrer les widgets dans le dashboard            | frontend |    P3    |   M    | ⏳ À faire  | -                                                 |   -   |
 
 ---
 
@@ -162,5 +162,31 @@ Ce document sert de **fil conducteur et de journal de bord technique** pour le s
 #### Preuves de Validation
 
 - Vitest : **113/113 tests unitaires passés avec succès**.
+- Couverture globale du projet : **100 % Stmts, 100 % Branch, 100 % Funcs, 100 % Lines**.
+- Linters : 0 avertissement, 0 erreur (`oxlint`, `oxfmt`).
+
+---
+
+### Ticket [DASHBOARD-09] : Importer et mettre à jour les films à partir d'un fichier CSV
+
+- **Issue liée** : [#9](https://github.com/theopetit1/themoviedb-discovery-app/issues/9)
+- **Branche** : `feature/DASHBOARD-09-movies-csv`
+- **Fichiers créés / modifiés** :
+  - `src/back-end/utils/csv-parser.ts` : Fonction `parseMoviesCsv` (validation RFC 4180, en-têtes obligatoires `id`, `title`, `original_title`, `original_language`, `overview`, colonnes optionnelles de métriques et associations `genre_ids` et `production_country_codes`).
+  - `src/back-end/utils/csv-parser.test.ts` : Tests unitaires exhaustifs couvrant les cas nominaux, les valeurs nullables, les erreurs de syntaxe, de types et de bornes.
+  - `src/back-end/backend-cli.ts` : Sous-commande CLI `add-movies <csv-file>` avec prise en charge de l'option globale ou locale `-p, --path`.
+  - `src/back-end/backend-cli.test.ts` : Tests d'intégration CLI pour l'import des films.
+  - `data/movies.csv` : Jeu de données de test avec exemples réels (_Fight Club_, _Interstellar_, _Le Voyage de Chihiro_).
+
+#### Choix d'Architecture & Conception
+
+1. **Validation stricte préalable (Fail Fast)** : L'analyse lexicale et sémantique du fichier CSV est réalisée avant toute connexion à SQLite. Si une seule ligne présente une anomalie (identifiant non entier positif, note hors bornes [0;10], durée ou budget non strictement positifs, code pays invalide), l'exécution s'interrompt avec une erreur explicite sans modifier la base.
+2. **Reconstitution relationnelle des associations** : La fonction `parseMoviesCsv` extrait les listes délimitées par point-virgule pour `genre_ids` et `production_country_codes` afin d'alimenter directement les tables de jointure SQLite (`movie_genres` et `production_countries`) au sein de la transaction d'`upsertMovies`.
+3. **Idempotence et mise à jour atomique** : L'importation s'appuie sur le repository `movie-repository.ts` garantissant qu'une ré-exécution du même fichier actualise les fiches existantes sans duplication.
+4. **Cohérence ergonomique du CLI** : La commande `add-movies` s'intègre harmonieusement aux commandes existantes `add-genres` et `add-countries`.
+
+#### Preuves de Validation
+
+- Vitest : **129/129 tests unitaires passés avec succès**.
 - Couverture globale du projet : **100 % Stmts, 100 % Branch, 100 % Funcs, 100 % Lines**.
 - Linters : 0 avertissement, 0 erreur (`oxlint`, `oxfmt`).

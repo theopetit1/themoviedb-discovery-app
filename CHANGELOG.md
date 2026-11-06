@@ -9,6 +9,10 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
 ### Ajouté
 
+- **DASHBOARD-09** : Fonction `parseMoviesCsv` dans `src/back-end/utils/csv-parser.ts` avec validation stricte RFC 4180 et extraction des associations genres et pays.
+- **DASHBOARD-09** : Sous-commande CLI `add-movies <csv-file>` dans `src/back-end/backend-cli.ts`.
+- **DASHBOARD-09** : Jeu de données d'exemple dans `data/movies.csv`.
+- **DASHBOARD-09** : Tests unitaires et d'intégration à 100 % de couverture.
 - **DASHBOARD-08** : Modèle TypeScript `DbMovie` dans `src/back-end/types/MoviesTypes.ts`.
 - **DASHBOARD-08** : Repository SQLite complet `movie-repository.ts` (`getMovieById`, `listMovies`, `upsertMovies` transactionnel).
 - **DASHBOARD-08** : Suite de tests unitaires pour `movie-repository.ts` avec 100 % de couverture de code.
