@@ -185,7 +185,7 @@ export async function updateMovieDetailsFromApi(
     const codeRegex = /^[A-Z]{2}$/;
     const validCountries: Country[] = [];
     for (const item of details.production_countries) {
-      const code = (item.iso_3166_1 ?? item.code ?? '').trim().toUpperCase();
+      const code = (item.iso_3166_1 ?? '').trim().toUpperCase();
       const name = (item.name ?? '').trim();
       if (codeRegex.test(code) && name.length > 0) {
         validCountries.push({ code, name });
@@ -199,7 +199,7 @@ export async function updateMovieDetailsFromApi(
     productionCountryCodes.push(...details.production_country_codes);
   }
 
-  const runtime = details.runtime_minutes ?? details.runtime ?? null;
+  const runtime = details.runtime ?? details.runtime_minutes ?? null;
   const validRuntime =
     runtime !== null && runtime > 0 && Number.isSafeInteger(runtime)
       ? runtime
@@ -311,14 +311,12 @@ export async function updatePopularMoviesFromApi(
 
   const movies: DbMovie[] = [];
   for (const item of results) {
-    if (typeof item.id === 'number') {
-      const updatedMovie = await updateMovieDetailsFromApi(
-        database,
-        item.id,
-        options,
-      );
-      movies.push(updatedMovie);
-    }
+    const updatedMovie = await updateMovieDetailsFromApi(
+      database,
+      item.id,
+      options,
+    );
+    movies.push(updatedMovie);
   }
 
   return movies;

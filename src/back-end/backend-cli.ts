@@ -192,7 +192,7 @@ program
           `Updated movie "${movie.title}" (ID ${movie.id}) in database at ${resolve(dbPath)}`,
         );
       } else {
-        const pages = Number(options.pages ?? '1');
+        const pages = Number(options.pages);
         let total = 0;
         for (let p = 1; p <= pages; p++) {
           const movies = await updatePopularMoviesFromApi(database, {
@@ -220,7 +220,7 @@ program
     const dbPath = getTargetDatabasePath(options);
     const database = getDatabase(dbPath);
     try {
-      const pages = Number(options.pages ?? '1');
+      const pages = Number(options.pages);
       const summary = await updateAllFromApi(database, { pages });
       console.log(
         `Update completed: ${summary.genresCount} genres, ${summary.countriesCount} countries, ${summary.moviesCount} movies at ${resolve(dbPath)}`,
@@ -230,4 +230,4 @@ program
     }
   });
 
-program.parse();
+await program.parseAsync();
