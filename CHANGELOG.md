@@ -9,6 +9,9 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
 ### Ajouté
 
+- **DASHBOARD-17** : Composant `TopRatedMovieWidget` dans `src/front-end/components/Widgets/TopRatedMovieWidget/` affichant le film le mieux noté, son affiche (avec fallback explicite), titre, année et note sur 10.
+- **DASHBOARD-17** : Stories Storybook avec note de démonstration à 9,1 / 10 et tests unitaires à 100 % de couverture de code.
+
 - **DASHBOARD-16** : Composant `TopCountryWidget` dans `src/front-end/components/Widgets/TopCountryWidget/` avec nom du pays, effectif en unité `films`, gestion des noms longs et distinction des pays inconnus.
 - **DASHBOARD-16** : Stories Storybook avec démonstration `United States of America` et `725 films`, et suite de tests unitaires à 100 % de couverture de code.
 
@@ -61,6 +64,9 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 ## [1.0.0] - 2026-11-01
 
 ### Ajouté
+
+- **DASHBOARD-17** : Composant `TopRatedMovieWidget` dans `src/front-end/components/Widgets/TopRatedMovieWidget/` affichant le film le mieux noté, son affiche (avec fallback explicite), titre, année et note sur 10.
+- **DASHBOARD-17** : Stories Storybook avec note de démonstration à 9,1 / 10 et tests unitaires à 100 % de couverture de code.
 
 - **DASHBOARD-16** : Composant `TopCountryWidget` dans `src/front-end/components/Widgets/TopCountryWidget/` avec nom du pays, effectif en unité `films`, gestion des noms longs et distinction des pays inconnus.
 - **DASHBOARD-16** : Stories Storybook avec démonstration `United States of America` et `725 films`, et suite de tests unitaires à 100 % de couverture de code.
