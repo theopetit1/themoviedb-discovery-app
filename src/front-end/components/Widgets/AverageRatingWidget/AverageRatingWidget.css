@@ -1,0 +1,11 @@
+.average-rating-widget .widget-metric-value-line {
+  align-items: baseline;
+  display: flex;
+  gap: 0.375rem;
+}
+
+.average-rating-widget .widget-scale {
+  color: var(--text-secondary, #6b7280);
+  font-size: 1.125rem;
+  font-weight: 600;
+}
