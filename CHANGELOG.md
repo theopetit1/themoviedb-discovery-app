@@ -9,6 +9,9 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
 ### Ajouté
 
+- **DASHBOARD-13** : Composant `MoviesCountWidget` dans `src/front-end/components/Widgets/MoviesCountWidget/` avec gestion des états nominal, chargement, erreur et données absentes.
+- **DASHBOARD-13** : Stories Storybook `MoviesCountWidget.stories.tsx` et tests unitaires à 100 % de couverture de code.
+
 - **DASHBOARD-12** : Configuration Storybook 10 avec Vite et React dans `.storybook/main.ts` et `.storybook/preview.ts`.
 - **DASHBOARD-12** : Scripts `storybook` et `build-storybook` dans `package.json`.
 - **DASHBOARD-12** : Documentation détaillée d'utilisation et d'écriture de stories dans `docs/STORYBOOK.md`.
@@ -49,6 +52,9 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 ## [1.0.0] - 2026-11-01
 
 ### Ajouté
+
+- **DASHBOARD-13** : Composant `MoviesCountWidget` dans `src/front-end/components/Widgets/MoviesCountWidget/` avec gestion des états nominal, chargement, erreur et données absentes.
+- **DASHBOARD-13** : Stories Storybook `MoviesCountWidget.stories.tsx` et tests unitaires à 100 % de couverture de code.
 
 - **DASHBOARD-12** : Configuration Storybook 10 avec Vite et React dans `.storybook/main.ts` et `.storybook/preview.ts`.
 - **DASHBOARD-12** : Scripts `storybook` et `build-storybook` dans `package.json`.
