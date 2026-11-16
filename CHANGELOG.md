@@ -9,6 +9,10 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
 ### Ajouté
 
+- **DASHBOARD-12** : Configuration Storybook 10 avec Vite et React dans `.storybook/main.ts` et `.storybook/preview.ts`.
+- **DASHBOARD-12** : Scripts `storybook` et `build-storybook` dans `package.json`.
+- **DASHBOARD-12** : Documentation détaillée d'utilisation et d'écriture de stories dans `docs/STORYBOOK.md`.
+
 - **DASHBOARD-11** : Page `DashboardPage` dans `src/front-end/pages/DashboardPage/` accessible sans widgets avec état initial d'information.
 - **DASHBOARD-11** : Route `/dashboard` dans `App.tsx` et lien de navigation "Tableau de bord" dans `NavBar.tsx`.
 - **DASHBOARD-11** : Suite de tests unitaires pour `DashboardPage`, `NavBar` et `App` avec 100 % de couverture de code.
@@ -45,6 +49,10 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 ## [1.0.0] - 2026-11-01
 
 ### Ajouté
+
+- **DASHBOARD-12** : Configuration Storybook 10 avec Vite et React dans `.storybook/main.ts` et `.storybook/preview.ts`.
+- **DASHBOARD-12** : Scripts `storybook` et `build-storybook` dans `package.json`.
+- **DASHBOARD-12** : Documentation détaillée d'utilisation et d'écriture de stories dans `docs/STORYBOOK.md`.
 
 - **DASHBOARD-11** : Page `DashboardPage` dans `src/front-end/pages/DashboardPage/` accessible sans widgets avec état initial d'information.
 - **DASHBOARD-11** : Route `/dashboard` dans `App.tsx` et lien de navigation "Tableau de bord" dans `NavBar.tsx`.
