@@ -33,7 +33,8 @@ Ce document sert de **fil conducteur et de journal de bord technique** pour le s
 | **DASHBOARD-12**          | Mise en œuvre de Storybook pour widgets           | frontend |    P3    |   S    | 🔍 En revue | `feature/DASHBOARD-12-storybook`                          | 100%  |
 | **DASHBOARD-13**          | Widget "Films en base"                            | frontend |    P3    |   S    | 🔍 En revue | `feature/DASHBOARD-13-widget-movies-count`                | 100%  |
 | **DASHBOARD-14**          | Widget "Durée moyenne"                            | frontend |    P3    |   S    | 🔍 En revue | `feature/DASHBOARD-14-widget-average-runtime`             | 100%  |
-| **DASHBOARD-15** à **24** | Widgets d'analyse (note, rentabilité, pays...)    | frontend |    P3    |   S    | ⏳ À faire  | -                                                         |   -   |
+| **DASHBOARD-15**          | Widget "Note moyenne"                             | frontend |    P3    |   S    | 🔍 En revue | `feature/DASHBOARD-15-widget-average-rating`              | 100%  |
+| **DASHBOARD-16** à **24** | Widgets d'analyse (rentabilité, pays, genres...)  | frontend |    P3    |   S    | ⏳ À faire  | -                                                         |   -   |
 | **DASHBOARD-25**          | Intégrer les widgets dans le dashboard            | frontend |    P3    |   M    | ⏳ À faire  | -                                                         |   -   |
 
 ---
@@ -194,6 +195,13 @@ Ce document sert de **fil conducteur et de journal de bord technique** pour le s
 - Linters : 0 avertissement, 0 erreur (`oxlint`, `oxfmt`).
 
 ---
+
+### Ticket [DASHBOARD-15] : Widget "Note moyenne"
+
+- **Branche** : `feature/DASHBOARD-15-widget-average-rating`
+- **Description** : Widget affichant la note moyenne des films avec format français à 2 décimales, échelle `/ 10`, distinction des données absentes par rapport à zéro, démonstration Storybook à 6,78 / 10 et tests complets.
+- **Statut** : PR ouverte en attente de review par Alexandre-girard-maif.
+- **Couverture de code** : 100 %.
 
 ### Ticket [DASHBOARD-14] : Widget "Durée moyenne"
 
