@@ -36,7 +36,8 @@ Ce document sert de **fil conducteur et de journal de bord technique** pour le s
 | **DASHBOARD-15**          | Widget "Note moyenne"                             | frontend |    P3    |   S    | 🔍 En revue | `feature/DASHBOARD-15-widget-average-rating`              | 100%  |
 | **DASHBOARD-16**          | Widget "Pays le plus représenté"                  | frontend |    P3    |   S    | 🔍 En revue | `feature/DASHBOARD-16-widget-top-country`                 | 100%  |
 | **DASHBOARD-17**          | Widget "Film le mieux noté"                       | frontend |    P3    |   S    | 🔍 En revue | `feature/DASHBOARD-17-widget-top-rated-movie`             | 100%  |
-| **DASHBOARD-18** à **24** | Widgets d'analyse (popularité, rentabilité...)    | frontend |    P3    |   S    | ⏳ À faire  | -                                                         |   -   |
+| **DASHBOARD-18**          | Widget "Film le plus populaire"                   | frontend |    P3    |   S    | 🔍 En revue | `feature/DASHBOARD-18-widget-top-popular-movie`           | 100%  |
+| **DASHBOARD-19** à **24** | Widgets d'analyse (rentabilité, genres...)        | frontend |    P3    |   S    | ⏳ À faire  | -                                                         |   -   |
 | **DASHBOARD-25**          | Intégrer les widgets dans le dashboard            | frontend |    P3    |   M    | ⏳ À faire  | -                                                         |   -   |
 
 ---
@@ -197,6 +198,13 @@ Ce document sert de **fil conducteur et de journal de bord technique** pour le s
 - Linters : 0 avertissement, 0 erreur (`oxlint`, `oxfmt`).
 
 ---
+
+### Ticket [DASHBOARD-18] : Widget "Film le plus populaire"
+
+- **Branche** : `feature/DASHBOARD-18-widget-top-popular-movie`
+- **Description** : Widget affichant le film le plus populaire avec son affiche, titre, année et popularité à 2 décimales (démo 1 036,49 popularité dans Storybook) et tests complets.
+- **Statut** : PR ouverte en attente de review par Alexandre-girard-maif.
+- **Couverture de code** : 100 %.
 
 ### Ticket [DASHBOARD-17] : Widget "Film le mieux noté"
 
