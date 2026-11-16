@@ -9,6 +9,9 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
 ### Ajouté
 
+- **DASHBOARD-14** : Composant `AverageRuntimeWidget` dans `src/front-end/components/Widgets/AverageRuntimeWidget/` avec gestion de l'unité `min`, arrondi et distinction stricte des durées absentes vis-à-vis de zéro.
+- **DASHBOARD-14** : Stories Storybook avec démonstration à 107 min et suite de tests unitaires à 100 % de couverture de code.
+
 - **DASHBOARD-13** : Composant `MoviesCountWidget` dans `src/front-end/components/Widgets/MoviesCountWidget/` avec gestion des états nominal, chargement, erreur et données absentes.
 - **DASHBOARD-13** : Stories Storybook `MoviesCountWidget.stories.tsx` et tests unitaires à 100 % de couverture de code.
 
@@ -52,6 +55,9 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 ## [1.0.0] - 2026-11-01
 
 ### Ajouté
+
+- **DASHBOARD-14** : Composant `AverageRuntimeWidget` dans `src/front-end/components/Widgets/AverageRuntimeWidget/` avec gestion de l'unité `min`, arrondi et distinction stricte des durées absentes vis-à-vis de zéro.
+- **DASHBOARD-14** : Stories Storybook avec démonstration à 107 min et suite de tests unitaires à 100 % de couverture de code.
 
 - **DASHBOARD-13** : Composant `MoviesCountWidget` dans `src/front-end/components/Widgets/MoviesCountWidget/` avec gestion des états nominal, chargement, erreur et données absentes.
 - **DASHBOARD-13** : Stories Storybook `MoviesCountWidget.stories.tsx` et tests unitaires à 100 % de couverture de code.
