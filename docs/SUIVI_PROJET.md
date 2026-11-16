@@ -29,7 +29,7 @@ Ce document sert de **fil conducteur et de journal de bord technique** pour le s
 | **DASHBOARD-08**          | Créer et mettre à jour les films                  | backend  |    P3    |   M    | 🔍 En revue | `feature/DASHBOARD-08-movies` (PR #31)                    | 100%  |
 | **DASHBOARD-09**          | Importer/mettre à jour films depuis CSV           | backend  |    P3    |   M    | 🔍 En revue | `feature/DASHBOARD-09-movies-csv` (PR #32)                | 100%  |
 | **DASHBOARD-10**          | Service de mise à jour films/genres/pays via API  | backend  |    P3    |   L    | 🔍 En revue | `feature/DASHBOARD-10-movie-sync-service` (PR en attente) | 100%  |
-| **DASHBOARD-11**          | Page Dashboard sans widgets                       | frontend |    P3    |   M    | ⏳ À faire  | -                                                         |   -   |
+| **DASHBOARD-11**          | Page Dashboard sans widgets                       | frontend |    P3    |   M    | 🔍 En revue | `feature/DASHBOARD-11-dashboard-page`                     | 100%  |
 | **DASHBOARD-12**          | Mise en œuvre de Storybook pour widgets           | frontend |    P3    |   S    | ⏳ À faire  | -                                                         |   -   |
 | **DASHBOARD-13** à **24** | Widgets d'analyse (durée, note, rentabilité...)   | frontend |    P3    |   S    | ⏳ À faire  | -                                                         |   -   |
 | **DASHBOARD-25**          | Intégrer les widgets dans le dashboard            | frontend |    P3    |   M    | ⏳ À faire  | -                                                         |   -   |
@@ -192,6 +192,13 @@ Ce document sert de **fil conducteur et de journal de bord technique** pour le s
 - Linters : 0 avertissement, 0 erreur (`oxlint`, `oxfmt`).
 
 ---
+
+### Ticket [DASHBOARD-11] : Afficher la page de tableau de bord des films sans widgets
+
+- **Branche** : `feature/DASHBOARD-11-dashboard-page`
+- **Description** : Implémentation du composant `DashboardPage`, routage `/dashboard`, navigation dans la `NavBar` et tests unitaires complets.
+- **Statut** : PR ouverte en attente de review par Alexandre-girard-maif.
+- **Couverture de code** : 100 %.
 
 ### Ticket [DASHBOARD-10] : Mettre en place le service permettant de mettre à jour les films, genres et pays à partir des APIs mises en place
 

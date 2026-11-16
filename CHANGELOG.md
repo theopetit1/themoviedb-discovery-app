@@ -9,6 +9,10 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
 ### Ajouté
 
+- **DASHBOARD-11** : Page `DashboardPage` dans `src/front-end/pages/DashboardPage/` accessible sans widgets avec état initial d'information.
+- **DASHBOARD-11** : Route `/dashboard` dans `App.tsx` et lien de navigation "Tableau de bord" dans `NavBar.tsx`.
+- **DASHBOARD-11** : Suite de tests unitaires pour `DashboardPage`, `NavBar` et `App` avec 100 % de couverture de code.
+
 - **DASHBOARD-10** : Module `sync-service.ts` dans `src/back-end/services/` pour la mise à jour des films, genres et pays depuis les APIs TMDB.
 - **DASHBOARD-10** : Commandes CLI `update-genres`, `update-countries`, `update-movies` et `update-all` dans `src/back-end/backend-cli.ts`.
 - **DASHBOARD-10** : Suite de tests unitaires et d'intégration à 100 % de couverture de code pour le service et le CLI.
@@ -41,5 +45,9 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 ## [1.0.0] - 2026-11-01
 
 ### Ajouté
+
+- **DASHBOARD-11** : Page `DashboardPage` dans `src/front-end/pages/DashboardPage/` accessible sans widgets avec état initial d'information.
+- **DASHBOARD-11** : Route `/dashboard` dans `App.tsx` et lien de navigation "Tableau de bord" dans `NavBar.tsx`.
+- **DASHBOARD-11** : Suite de tests unitaires pour `DashboardPage`, `NavBar` et `App` avec 100 % de couverture de code.
 
 - Version initiale de l'application de découverte TMDB avec frontend React et serveur Express intermédiaire.
