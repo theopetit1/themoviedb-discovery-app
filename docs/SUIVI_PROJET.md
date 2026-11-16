@@ -34,7 +34,8 @@ Ce document sert de **fil conducteur et de journal de bord technique** pour le s
 | **DASHBOARD-13**          | Widget "Films en base"                            | frontend |    P3    |   S    | 🔍 En revue | `feature/DASHBOARD-13-widget-movies-count`                | 100%  |
 | **DASHBOARD-14**          | Widget "Durée moyenne"                            | frontend |    P3    |   S    | 🔍 En revue | `feature/DASHBOARD-14-widget-average-runtime`             | 100%  |
 | **DASHBOARD-15**          | Widget "Note moyenne"                             | frontend |    P3    |   S    | 🔍 En revue | `feature/DASHBOARD-15-widget-average-rating`              | 100%  |
-| **DASHBOARD-16** à **24** | Widgets d'analyse (rentabilité, pays, genres...)  | frontend |    P3    |   S    | ⏳ À faire  | -                                                         |   -   |
+| **DASHBOARD-16**          | Widget "Pays le plus représenté"                  | frontend |    P3    |   S    | 🔍 En revue | `feature/DASHBOARD-16-widget-top-country`                 | 100%  |
+| **DASHBOARD-17** à **24** | Widgets d'analyse (films, rentabilité, genres...) | frontend |    P3    |   S    | ⏳ À faire  | -                                                         |   -   |
 | **DASHBOARD-25**          | Intégrer les widgets dans le dashboard            | frontend |    P3    |   M    | ⏳ À faire  | -                                                         |   -   |
 
 ---
@@ -195,6 +196,13 @@ Ce document sert de **fil conducteur et de journal de bord technique** pour le s
 - Linters : 0 avertissement, 0 erreur (`oxlint`, `oxfmt`).
 
 ---
+
+### Ticket [DASHBOARD-16] : Widget "Pays le plus représenté"
+
+- **Branche** : `feature/DASHBOARD-16-widget-top-country`
+- **Description** : Widget affichant le pays le plus représenté avec son nom, effectif en `films`, gestion des noms longs, démo Storybook `United States of America` et `725 films` et tests complets.
+- **Statut** : PR ouverte en attente de review par Alexandre-girard-maif.
+- **Couverture de code** : 100 %.
 
 ### Ticket [DASHBOARD-15] : Widget "Note moyenne"
 

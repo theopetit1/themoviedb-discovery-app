@@ -9,6 +9,9 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
 ### Ajouté
 
+- **DASHBOARD-16** : Composant `TopCountryWidget` dans `src/front-end/components/Widgets/TopCountryWidget/` avec nom du pays, effectif en unité `films`, gestion des noms longs et distinction des pays inconnus.
+- **DASHBOARD-16** : Stories Storybook avec démonstration `United States of America` et `725 films`, et suite de tests unitaires à 100 % de couverture de code.
+
 - **DASHBOARD-15** : Composant `AverageRatingWidget` dans `src/front-end/components/Widgets/AverageRatingWidget/` avec format français à 2 décimales, échelle `/ 10` et distinction stricte des notes absentes vis-à-vis de zéro.
 - **DASHBOARD-15** : Stories Storybook avec démonstration à 6,78 / 10 et suite de tests unitaires à 100 % de couverture de code.
 
@@ -58,6 +61,9 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 ## [1.0.0] - 2026-11-01
 
 ### Ajouté
+
+- **DASHBOARD-16** : Composant `TopCountryWidget` dans `src/front-end/components/Widgets/TopCountryWidget/` avec nom du pays, effectif en unité `films`, gestion des noms longs et distinction des pays inconnus.
+- **DASHBOARD-16** : Stories Storybook avec démonstration `United States of America` et `725 films`, et suite de tests unitaires à 100 % de couverture de code.
 
 - **DASHBOARD-15** : Composant `AverageRatingWidget` dans `src/front-end/components/Widgets/AverageRatingWidget/` avec format français à 2 décimales, échelle `/ 10` et distinction stricte des notes absentes vis-à-vis de zéro.
 - **DASHBOARD-15** : Stories Storybook avec démonstration à 6,78 / 10 et suite de tests unitaires à 100 % de couverture de code.
