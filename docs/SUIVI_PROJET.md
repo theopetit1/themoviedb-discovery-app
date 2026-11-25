@@ -199,6 +199,13 @@ Ce document sert de **fil conducteur et de journal de bord technique** pour le s
 
 ---
 
+### Ticket [DASHBOARD-22] : Widget "Genre dominant"
+
+- **Branche** : `feature/DASHBOARD-22-widget-dominant-genre`
+- **Description** : Widget identifiant le genre le plus représenté dans la base avec nom du genre, effectif en `films` (démo `Drame` et `488 films` dans Storybook), documentation de la règle de départage alphabétique en cas d'égalité et tests complets.
+- **Statut** : PR ouverte en attente de review par Alexandre-girard-maif.
+- **Couverture de code** : 100 %.
+
 ### Ticket [DASHBOARD-21] : Widget "Genres représentés"
 
 - **Branche** : `feature/DASHBOARD-21-widget-genres-count`

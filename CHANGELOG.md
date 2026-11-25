@@ -9,6 +9,9 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
 ### Ajouté
 
+- **DASHBOARD-22** : Composant `DominantGenreWidget` dans `src/front-end/components/Widgets/DominantGenreWidget/` affichant le genre dominant avec effectif en films et règle de départage alphabétique.
+- **DASHBOARD-22** : Stories Storybook avec démonstration `Drame` et `488 films`, et tests unitaires à 100 % de couverture de code.
+
 - **DASHBOARD-21** : Composant `GenresCountWidget` dans `src/front-end/components/Widgets/GenresCountWidget/` affichant le nombre de genres représentés avec gestion singulier/pluriel et zéro strict.
 - **DASHBOARD-21** : Stories Storybook avec démonstration à 19 genres et tests unitaires à 100 % de couverture de code.
 
