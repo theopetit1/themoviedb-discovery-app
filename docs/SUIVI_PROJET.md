@@ -199,6 +199,13 @@ Ce document sert de **fil conducteur et de journal de bord technique** pour le s
 
 ---
 
+### Ticket [DASHBOARD-20] : Widget "Film le moins rentable"
+
+- **Branche** : `feature/DASHBOARD-20-widget-least-profitable-movie`
+- **Description** : Widget affichant le film présentant le plus faible retour sur investissement (ROI = ((recettes - budget) / budget) * 100). Démonstration Storybook à -99,99 % ROI et tests complets.
+- **Statut** : PR ouverte en attente de review par Alexandre-girard-maif.
+- **Couverture de code** : 100 %.
+
 ### Ticket [DASHBOARD-19] : Widget "Film le plus rentable"
 
 - **Branche** : `feature/DASHBOARD-19-widget-top-profitable-movie`

@@ -9,6 +9,9 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
 ### Ajouté
 
+- **DASHBOARD-20** : Composant `LeastProfitableMovieWidget` dans `src/front-end/components/Widgets/LeastProfitableMovieWidget/` affichant le film le moins rentable selon son ROI négatif avec deux décimales.
+- **DASHBOARD-20** : Stories Storybook avec démonstration à -99,99 % ROI, validation des règles d'éligibilité et tests unitaires à 100 % de couverture de code.
+
 - **DASHBOARD-19** : Composant `TopProfitableMovieWidget` dans `src/front-end/components/Widgets/TopProfitableMovieWidget/` affichant le film le plus rentable selon son ROI en pourcentage avec deux décimales.
 - **DASHBOARD-19** : Stories Storybook avec démonstration à 69 667,36 % ROI, validation des règles d'éligibilité et tests unitaires à 100 % de couverture de code.
 
