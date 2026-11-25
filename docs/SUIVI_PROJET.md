@@ -199,6 +199,13 @@ Ce document sert de **fil conducteur et de journal de bord technique** pour le s
 
 ---
 
+### Ticket [DASHBOARD-24] : Widget "Meilleure note pondérée" par genre
+
+- **Branche** : `feature/DASHBOARD-24-widget-best-weighted-rated-genre`
+- **Description** : Widget affichant le genre possédant la meilleure note pondérée bayésienne (formule IMDB : WR = (v/(v+m))*R + (m/(v+m))*C) avec quorum de votes m (démo `Animation` et `7,68 / 10` dans Storybook) et tests complets.
+- **Statut** : PR ouverte en attente de review par Alexandre-girard-maif.
+- **Couverture de code** : 100 %.
+
 ### Ticket [DASHBOARD-23] : Widget "Meilleure note" par genre
 
 - **Branche** : `feature/DASHBOARD-23-widget-best-rated-genre`

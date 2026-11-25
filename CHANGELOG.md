@@ -9,6 +9,9 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
 ### Ajouté
 
+- **DASHBOARD-24** : Composant `BestWeightedRatedGenreWidget` dans `src/front-end/components/Widgets/BestWeightedRatedGenreWidget/` affichant le genre ayant la meilleure note pondérée bayésienne sur 10.
+- **DASHBOARD-24** : Stories Storybook avec démonstration `Animation` et `7,68 / 10`, validation de la formule IMDB/Weighted Rating et tests unitaires à 100 % de couverture de code.
+
 - **DASHBOARD-23** : Composant `BestRatedGenreWidget` dans `src/front-end/components/Widgets/BestRatedGenreWidget/` affichant le genre ayant la meilleure note moyenne simple sur 10.
 - **DASHBOARD-23** : Stories Storybook avec démonstration `Animation` et `7,41 / 10`, et tests unitaires à 100 % de couverture de code.
 
