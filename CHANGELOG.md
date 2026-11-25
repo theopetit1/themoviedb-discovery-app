@@ -9,6 +9,9 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
 ### Ajouté
 
+- **DASHBOARD-21** : Composant `GenresCountWidget` dans `src/front-end/components/Widgets/GenresCountWidget/` affichant le nombre de genres représentés avec gestion singulier/pluriel et zéro strict.
+- **DASHBOARD-21** : Stories Storybook avec démonstration à 19 genres et tests unitaires à 100 % de couverture de code.
+
 - **DASHBOARD-20** : Composant `LeastProfitableMovieWidget` dans `src/front-end/components/Widgets/LeastProfitableMovieWidget/` affichant le film le moins rentable selon son ROI négatif avec deux décimales.
 - **DASHBOARD-20** : Stories Storybook avec démonstration à -99,99 % ROI, validation des règles d'éligibilité et tests unitaires à 100 % de couverture de code.
 

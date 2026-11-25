@@ -199,6 +199,13 @@ Ce document sert de **fil conducteur et de journal de bord technique** pour le s
 
 ---
 
+### Ticket [DASHBOARD-21] : Widget "Genres représentés"
+
+- **Branche** : `feature/DASHBOARD-21-widget-genres-count`
+- **Description** : Widget affichant le nombre de genres représentés parmi les films de la base avec format français, distinction singulier/pluriel, zéro strict (démo 19 genres dans Storybook) et tests complets.
+- **Statut** : PR ouverte en attente de review par Alexandre-girard-maif.
+- **Couverture de code** : 100 %.
+
 ### Ticket [DASHBOARD-20] : Widget "Film le moins rentable"
 
 - **Branche** : `feature/DASHBOARD-20-widget-least-profitable-movie`
