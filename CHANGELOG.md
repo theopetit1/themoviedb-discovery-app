@@ -9,6 +9,9 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
 ### Ajouté
 
+- **DASHBOARD-19** : Composant `TopProfitableMovieWidget` dans `src/front-end/components/Widgets/TopProfitableMovieWidget/` affichant le film le plus rentable selon son ROI en pourcentage avec deux décimales.
+- **DASHBOARD-19** : Stories Storybook avec démonstration à 69 667,36 % ROI, validation des règles d'éligibilité et tests unitaires à 100 % de couverture de code.
+
 - **DASHBOARD-18** : Composant `TopPopularMovieWidget` dans `src/front-end/components/Widgets/TopPopularMovieWidget/` affichant le film le plus populaire avec son affiche, titre, année et popularité formatée à 2 décimales.
 - **DASHBOARD-18** : Stories Storybook avec démonstration à 1 036,49 popularité et tests unitaires à 100 % de couverture de code.
 
@@ -67,31 +70,5 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 ## [1.0.0] - 2026-11-01
 
 ### Ajouté
-
-- **DASHBOARD-18** : Composant `TopPopularMovieWidget` dans `src/front-end/components/Widgets/TopPopularMovieWidget/` affichant le film le plus populaire avec son affiche, titre, année et popularité formatée à 2 décimales.
-- **DASHBOARD-18** : Stories Storybook avec démonstration à 1 036,49 popularité et tests unitaires à 100 % de couverture de code.
-
-- **DASHBOARD-17** : Composant `TopRatedMovieWidget` dans `src/front-end/components/Widgets/TopRatedMovieWidget/` affichant le film le mieux noté, son affiche (avec fallback explicite), titre, année et note sur 10.
-- **DASHBOARD-17** : Stories Storybook avec note de démonstration à 9,1 / 10 et tests unitaires à 100 % de couverture de code.
-
-- **DASHBOARD-16** : Composant `TopCountryWidget` dans `src/front-end/components/Widgets/TopCountryWidget/` avec nom du pays, effectif en unité `films`, gestion des noms longs et distinction des pays inconnus.
-- **DASHBOARD-16** : Stories Storybook avec démonstration `United States of America` et `725 films`, et suite de tests unitaires à 100 % de couverture de code.
-
-- **DASHBOARD-15** : Composant `AverageRatingWidget` dans `src/front-end/components/Widgets/AverageRatingWidget/` avec format français à 2 décimales, échelle `/ 10` et distinction stricte des notes absentes vis-à-vis de zéro.
-- **DASHBOARD-15** : Stories Storybook avec démonstration à 6,78 / 10 et suite de tests unitaires à 100 % de couverture de code.
-
-- **DASHBOARD-14** : Composant `AverageRuntimeWidget` dans `src/front-end/components/Widgets/AverageRuntimeWidget/` avec gestion de l'unité `min`, arrondi et distinction stricte des durées absentes vis-à-vis de zéro.
-- **DASHBOARD-14** : Stories Storybook avec démonstration à 107 min et suite de tests unitaires à 100 % de couverture de code.
-
-- **DASHBOARD-13** : Composant `MoviesCountWidget` dans `src/front-end/components/Widgets/MoviesCountWidget/` avec gestion des états nominal, chargement, erreur et données absentes.
-- **DASHBOARD-13** : Stories Storybook `MoviesCountWidget.stories.tsx` et tests unitaires à 100 % de couverture de code.
-
-- **DASHBOARD-12** : Configuration Storybook 10 avec Vite et React dans `.storybook/main.ts` et `.storybook/preview.ts`.
-- **DASHBOARD-12** : Scripts `storybook` et `build-storybook` dans `package.json`.
-- **DASHBOARD-12** : Documentation détaillée d'utilisation et d'écriture de stories dans `docs/STORYBOOK.md`.
-
-- **DASHBOARD-11** : Page `DashboardPage` dans `src/front-end/pages/DashboardPage/` accessible sans widgets avec état initial d'information.
-- **DASHBOARD-11** : Route `/dashboard` dans `App.tsx` et lien de navigation "Tableau de bord" dans `NavBar.tsx`.
-- **DASHBOARD-11** : Suite de tests unitaires pour `DashboardPage`, `NavBar` et `App` avec 100 % de couverture de code.
 
 - Version initiale de l'application de découverte TMDB avec frontend React et serveur Express intermédiaire.
