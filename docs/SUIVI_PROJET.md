@@ -199,6 +199,13 @@ Ce document sert de **fil conducteur et de journal de bord technique** pour le s
 
 ---
 
+### Ticket [DASHBOARD-23] : Widget "Meilleure note" par genre
+
+- **Branche** : `feature/DASHBOARD-23-widget-best-rated-genre`
+- **Description** : Widget affichant le genre ayant la meilleure note moyenne simple (distincte de la note pondérée) avec format à deux décimales et échelle `/ 10` (démo `Animation` et `7,41 / 10` dans Storybook) et tests complets.
+- **Statut** : PR ouverte en attente de review par Alexandre-girard-maif.
+- **Couverture de code** : 100 %.
+
 ### Ticket [DASHBOARD-22] : Widget "Genre dominant"
 
 - **Branche** : `feature/DASHBOARD-22-widget-dominant-genre`

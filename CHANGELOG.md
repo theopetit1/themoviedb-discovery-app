@@ -9,6 +9,9 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
 ### Ajouté
 
+- **DASHBOARD-23** : Composant `BestRatedGenreWidget` dans `src/front-end/components/Widgets/BestRatedGenreWidget/` affichant le genre ayant la meilleure note moyenne simple sur 10.
+- **DASHBOARD-23** : Stories Storybook avec démonstration `Animation` et `7,41 / 10`, et tests unitaires à 100 % de couverture de code.
+
 - **DASHBOARD-22** : Composant `DominantGenreWidget` dans `src/front-end/components/Widgets/DominantGenreWidget/` affichant le genre dominant avec effectif en films et règle de départage alphabétique.
 - **DASHBOARD-22** : Stories Storybook avec démonstration `Drame` et `488 films`, et tests unitaires à 100 % de couverture de code.
 
