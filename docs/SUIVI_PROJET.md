@@ -17,22 +17,28 @@ Ce document sert de **fil conducteur et de journal de bord technique** pour le s
 
 ## 📊 Matrice d'avancement des Tickets
 
-| Ticket                    | Titre                                             |  Scope   | Priorité | Taille |   Statut   | Branche                              | Tests |
-| :------------------------ | :------------------------------------------------ | :------: | :------: | :----: | :--------: | :----------------------------------- | :---: |
-| **DASHBOARD-01**          | Spécifier le modèle de données du tableau de bord | backend  |    P1    |   S    | ✅ Terminé | `develop` (socle)                    |   -   |
-| **DASHBOARD-02**          | Mettre en place le schéma SQLite via CLI          | backend  |    P1    |   M    | ✅ Terminé | `develop` (socle)                    | 100%  |
-| **DASHBOARD-03**          | Créer et mettre à jour les genres                 | backend  |    P1    |   M    | ✅ Terminé | `feature/DASHBOARD-03-genres`        | 100%  |
-| **DASHBOARD-04**          | Importer genres depuis CSV & nettoyer inutilisés  | backend  |    P2    |   M    | ✅ Terminé | `feature/DASHBOARD-04-genres-csv`    | 100%  |
-| **DASHBOARD-05**          | Créer et mettre à jour les pays                   | backend  |    P1    |   M    | ✅ Terminé | `feature/DASHBOARD-05-countries`     | 100%  |
-| **DASHBOARD-06**          | Importer pays depuis CSV & nettoyer inutilisés    | backend  |    P2    |   M    | ✅ Terminé | `feature/DASHBOARD-06-countries-csv` | 100%  |
-| **DASHBOARD-07**          | Exposer films par année via API Discover          | backend  |    P2    |   M    | ⏳ À faire | -                                    |   -   |
-| **DASHBOARD-08**          | Créer et mettre à jour les films                  | backend  |    P3    |   M    | ⏳ À faire | -                                    |   -   |
-| **DASHBOARD-09**          | Importer/mettre à jour films depuis CSV           | backend  |    P3    |   M    | ⏳ À faire | -                                    |   -   |
-| **DASHBOARD-10**          | Service de mise à jour films/genres/pays via API  | backend  |    P3    |   L    | ⏳ À faire | -                                    |   -   |
-| **DASHBOARD-11**          | Page Dashboard sans widgets                       | frontend |    P3    |   M    | ⏳ À faire | -                                    |   -   |
-| **DASHBOARD-12**          | Mise en œuvre de Storybook pour widgets           | frontend |    P3    |   S    | ⏳ À faire | -                                    |   -   |
-| **DASHBOARD-13** à **24** | Widgets d'analyse (durée, note, rentabilité...)   | frontend |    P3    |   S    | ⏳ À faire | -                                    |   -   |
-| **DASHBOARD-25**          | Intégrer les widgets dans le dashboard            | frontend |    P3    |   M    | ⏳ À faire | -                                    |   -   |
+| Ticket                    | Titre                                             |  Scope   | Priorité | Taille |   Statut    | Branche                                                   | Tests |
+| :------------------------ | :------------------------------------------------ | :------: | :------: | :----: | :---------: | :-------------------------------------------------------- | :---: |
+| **DASHBOARD-01**          | Spécifier le modèle de données du tableau de bord | backend  |    P1    |   S    | ✅ Terminé  | `develop` (socle)                                         |   -   |
+| **DASHBOARD-02**          | Mettre en place le schéma SQLite via CLI          | backend  |    P1    |   M    | ✅ Terminé  | `develop` (socle)                                         | 100%  |
+| **DASHBOARD-03**          | Créer et mettre à jour les genres                 | backend  |    P1    |   M    | ✅ Terminé  | `feature/DASHBOARD-03-genres`                             | 100%  |
+| **DASHBOARD-04**          | Importer genres depuis CSV & nettoyer inutilisés  | backend  |    P2    |   M    | ✅ Terminé  | `feature/DASHBOARD-04-genres-csv`                         | 100%  |
+| **DASHBOARD-05**          | Créer et mettre à jour les pays                   | backend  |    P1    |   M    | ✅ Terminé  | `feature/DASHBOARD-05-countries`                          | 100%  |
+| **DASHBOARD-06**          | Importer pays depuis CSV & nettoyer inutilisés    | backend  |    P2    |   M    | ✅ Terminé  | `feature/DASHBOARD-06-countries-csv`                      | 100%  |
+| **DASHBOARD-07**          | Exposer films par année via API Discover          | backend  |    P2    |   M    | 🔍 En revue | `feature/DASHBOARD-07-discover-movies` (PR #30)           | 100%  |
+| **DASHBOARD-08**          | Créer et mettre à jour les films                  | backend  |    P3    |   M    | 🔍 En revue | `feature/DASHBOARD-08-movies` (PR #31)                    | 100%  |
+| **DASHBOARD-09**          | Importer/mettre à jour films depuis CSV           | backend  |    P3    |   M    | 🔍 En revue | `feature/DASHBOARD-09-movies-csv` (PR #32)                | 100%  |
+| **DASHBOARD-10**          | Service de mise à jour films/genres/pays via API  | backend  |    P3    |   L    | 🔍 En revue | `feature/DASHBOARD-10-movie-sync-service` (PR en attente) | 100%  |
+| **DASHBOARD-11**          | Page Dashboard sans widgets                       | frontend |    P3    |   M    | 🔍 En revue | `feature/DASHBOARD-11-dashboard-page`                     | 100%  |
+| **DASHBOARD-12**          | Mise en œuvre de Storybook pour widgets           | frontend |    P3    |   S    | 🔍 En revue | `feature/DASHBOARD-12-storybook`                          | 100%  |
+| **DASHBOARD-13**          | Widget "Films en base"                            | frontend |    P3    |   S    | 🔍 En revue | `feature/DASHBOARD-13-widget-movies-count`                | 100%  |
+| **DASHBOARD-14**          | Widget "Durée moyenne"                            | frontend |    P3    |   S    | 🔍 En revue | `feature/DASHBOARD-14-widget-average-runtime`             | 100%  |
+| **DASHBOARD-15**          | Widget "Note moyenne"                             | frontend |    P3    |   S    | 🔍 En revue | `feature/DASHBOARD-15-widget-average-rating`              | 100%  |
+| **DASHBOARD-16**          | Widget "Pays le plus représenté"                  | frontend |    P3    |   S    | 🔍 En revue | `feature/DASHBOARD-16-widget-top-country`                 | 100%  |
+| **DASHBOARD-17**          | Widget "Film le mieux noté"                       | frontend |    P3    |   S    | 🔍 En revue | `feature/DASHBOARD-17-widget-top-rated-movie`             | 100%  |
+| **DASHBOARD-18**          | Widget "Film le plus populaire"                   | frontend |    P3    |   S    | 🔍 En revue | `feature/DASHBOARD-18-widget-top-popular-movie`           | 100%  |
+| **DASHBOARD-19** à **24** | Widgets d'analyse (rentabilité, genres...)        | frontend |    P3    |   S    | ⏳ À faire  | -                                                         |   -   |
+| **DASHBOARD-25**          | Intégrer les widgets dans le dashboard            | frontend |    P3    |   M    | ⏳ À faire  | -                                                         |   -   |
 
 ---
 
@@ -137,5 +143,179 @@ Ce document sert de **fil conducteur et de journal de bord technique** pour le s
 #### Preuves de Validation
 
 - Vitest : **103/103 tests unitaires passés avec succès**.
+- Couverture globale du projet : **100 % Stmts, 100 % Branch, 100 % Funcs, 100 % Lines**.
+- Linters : 0 avertissement, 0 erreur (`oxlint`, `oxfmt`).
+
+---
+
+### Ticket [DASHBOARD-08] : Créer et mettre à jour les films
+
+- **Issue liée** : [#8](https://github.com/theopetit1/themoviedb-discovery-app/issues/8)
+- **Branche** : `feature/DASHBOARD-08-movies`
+- **Fichiers créés / modifiés** :
+  - `src/back-end/types/MoviesTypes.ts` : Définition du modèle `DbMovie` correspondant à la table SQLite `movies` et aux relations `movie_genres` et `production_countries`.
+  - `src/back-end/database/movie-repository.ts` : Implémentation du repository de films (`getMovieById`, `listMovies` ordonné par `id ASC`, `upsertMovies` transactionnel et idempotent avec réconciliation des genres et pays).
+  - `src/back-end/database/movie-repository.test.ts` : 10 tests unitaires complets sur base en mémoire (recherche existant/inexistant, valeurs nullables, liste ordonnée, tableaux/itérables/générateurs, idempotence, validation défensive stricte et rollback transactionnel).
+
+#### Choix d'Architecture & Conception
+
+1. **Typage strict et modèle unifié (`DbMovie`)** : Définition explicite des champs optionnels et obligatoires, avec prise en charge des associations relationnelles (`genre_ids?: number[]`, `production_country_codes?: string[]`).
+2. **Gestion transactionnelle complète et intégrité relationnelle** : La fonction `upsertMovies` encapsule l'insertion/mise à jour du film, la synchronisation de ses genres associés (`movie_genres`) et de ses pays de production (`production_countries`) au sein d'une seule transaction atomique (`BEGIN` / `COMMIT` / `ROLLBACK`).
+3. **Idempotence avec clause SQLite `ON CONFLICT`** : Utilisation de `INSERT INTO movies ... ON CONFLICT(id) DO UPDATE SET ...` garantissant la mise à jour des attributs du film sans création de doublons. Les tables de liaison associées sont rafraîchies pour refléter fidèlement le dernier état fourni.
+4. **Validation défensive (Fail Fast)** : Vérification rigoureuse des champs obligatoires (`id > 0`, `title`, `original_title`, `original_language`, `overview`, `collected_at`) et des contraintes d'intégrité métier positives (`runtime_minutes > 0`, `budget > 0`, `revenue > 0`) avant toute persistance.
+5. **Flexibilité des entrées** : Consommation générique de `Iterable<DbMovie>`, autorisant indifféremment des tableaux, des ensembles ou des flux de générateurs.
+
+#### Preuves de Validation
+
+- Vitest : **113/113 tests unitaires passés avec succès**.
+- Couverture globale du projet : **100 % Stmts, 100 % Branch, 100 % Funcs, 100 % Lines**.
+- Linters : 0 avertissement, 0 erreur (`oxlint`, `oxfmt`).
+
+---
+
+### Ticket [DASHBOARD-09] : Importer et mettre à jour les films à partir d'un fichier CSV
+
+- **Issue liée** : [#9](https://github.com/theopetit1/themoviedb-discovery-app/issues/9)
+- **Branche** : `feature/DASHBOARD-09-movies-csv`
+- **Fichiers créés / modifiés** :
+  - `src/back-end/utils/csv-parser.ts` : Fonction `parseMoviesCsv` (validation RFC 4180, en-têtes obligatoires `id`, `title`, `original_title`, `original_language`, `overview`, colonnes optionnelles de métriques et associations `genre_ids` et `production_country_codes`).
+  - `src/back-end/utils/csv-parser.test.ts` : Tests unitaires exhaustifs couvrant les cas nominaux, les valeurs nullables, les erreurs de syntaxe, de types et de bornes.
+  - `src/back-end/backend-cli.ts` : Sous-commande CLI `add-movies <csv-file>` avec prise en charge de l'option globale ou locale `-p, --path`.
+  - `src/back-end/backend-cli.test.ts` : Tests d'intégration CLI pour l'import des films.
+  - `data/movies.csv` : Jeu de données de test avec exemples réels (_Fight Club_, _Interstellar_, _Le Voyage de Chihiro_).
+
+#### Choix d'Architecture & Conception
+
+1. **Validation stricte préalable (Fail Fast)** : L'analyse lexicale et sémantique du fichier CSV est réalisée avant toute connexion à SQLite. Si une seule ligne présente une anomalie (identifiant non entier positif, note hors bornes [0;10], durée ou budget non strictement positifs, code pays invalide), l'exécution s'interrompt avec une erreur explicite sans modifier la base.
+2. **Reconstitution relationnelle des associations** : La fonction `parseMoviesCsv` extrait les listes délimitées par point-virgule pour `genre_ids` et `production_country_codes` afin d'alimenter directement les tables de jointure SQLite (`movie_genres` et `production_countries`) au sein de la transaction d'`upsertMovies`.
+3. **Idempotence et mise à jour atomique** : L'importation s'appuie sur le repository `movie-repository.ts` garantissant qu'une ré-exécution du même fichier actualise les fiches existantes sans duplication.
+4. **Cohérence ergonomique du CLI** : La commande `add-movies` s'intègre harmonieusement aux commandes existantes `add-genres` et `add-countries`.
+
+#### Preuves de Validation
+
+- Vitest : **129/129 tests unitaires passés avec succès**.
+- Couverture globale du projet : **100 % Stmts, 100 % Branch, 100 % Funcs, 100 % Lines**.
+- Linters : 0 avertissement, 0 erreur (`oxlint`, `oxfmt`).
+
+---
+
+### Ticket [DASHBOARD-24] : Widget "Meilleure note pondérée" par genre
+
+- **Branche** : `feature/DASHBOARD-24-widget-best-weighted-rated-genre`
+- **Description** : Widget affichant le genre possédant la meilleure note pondérée bayésienne (formule IMDB : WR = (v/(v+m))*R + (m/(v+m))*C) avec quorum de votes m (démo `Animation` et `7,68 / 10` dans Storybook) et tests complets.
+- **Statut** : PR ouverte en attente de review par Alexandre-girard-maif.
+- **Couverture de code** : 100 %.
+
+### Ticket [DASHBOARD-23] : Widget "Meilleure note" par genre
+
+- **Branche** : `feature/DASHBOARD-23-widget-best-rated-genre`
+- **Description** : Widget affichant le genre ayant la meilleure note moyenne simple (distincte de la note pondérée) avec format à deux décimales et échelle `/ 10` (démo `Animation` et `7,41 / 10` dans Storybook) et tests complets.
+- **Statut** : PR ouverte en attente de review par Alexandre-girard-maif.
+- **Couverture de code** : 100 %.
+
+### Ticket [DASHBOARD-22] : Widget "Genre dominant"
+
+- **Branche** : `feature/DASHBOARD-22-widget-dominant-genre`
+- **Description** : Widget identifiant le genre le plus représenté dans la base avec nom du genre, effectif en `films` (démo `Drame` et `488 films` dans Storybook), documentation de la règle de départage alphabétique en cas d'égalité et tests complets.
+- **Statut** : PR ouverte en attente de review par Alexandre-girard-maif.
+- **Couverture de code** : 100 %.
+
+### Ticket [DASHBOARD-21] : Widget "Genres représentés"
+
+- **Branche** : `feature/DASHBOARD-21-widget-genres-count`
+- **Description** : Widget affichant le nombre de genres représentés parmi les films de la base avec format français, distinction singulier/pluriel, zéro strict (démo 19 genres dans Storybook) et tests complets.
+- **Statut** : PR ouverte en attente de review par Alexandre-girard-maif.
+- **Couverture de code** : 100 %.
+
+### Ticket [DASHBOARD-20] : Widget "Film le moins rentable"
+
+- **Branche** : `feature/DASHBOARD-20-widget-least-profitable-movie`
+- **Description** : Widget affichant le film présentant le plus faible retour sur investissement (ROI = ((recettes - budget) / budget) * 100). Démonstration Storybook à -99,99 % ROI et tests complets.
+- **Statut** : PR ouverte en attente de review par Alexandre-girard-maif.
+- **Couverture de code** : 100 %.
+
+### Ticket [DASHBOARD-19] : Widget "Film le plus rentable"
+
+- **Branche** : `feature/DASHBOARD-19-widget-top-profitable-movie`
+- **Description** : Widget affichant le film présentant le meilleur retour sur investissement (ROI = ((recettes - budget) / budget) * 100). Démonstration Storybook à 69 667,36 % ROI et tests complets.
+- **Statut** : PR ouverte en attente de review par Alexandre-girard-maif.
+- **Couverture de code** : 100 %.
+
+### Ticket [DASHBOARD-18] : Widget "Film le plus populaire"
+
+- **Branche** : `feature/DASHBOARD-18-widget-top-popular-movie`
+- **Description** : Widget affichant le film le plus populaire avec son affiche, titre, année et popularité à 2 décimales (démo 1 036,49 popularité dans Storybook) et tests complets.
+- **Statut** : PR ouverte en attente de review par Alexandre-girard-maif.
+- **Couverture de code** : 100 %.
+
+### Ticket [DASHBOARD-17] : Widget "Film le mieux noté"
+
+- **Branche** : `feature/DASHBOARD-17-widget-top-rated-movie`
+- **Description** : Widget affichant le film le mieux noté, affiche avec remplacement explicite sans affiche, titre, année, note sur 10 (démo 9,1 / 10 dans Storybook) et tests complets.
+- **Statut** : PR ouverte en attente de review par Alexandre-girard-maif.
+- **Couverture de code** : 100 %.
+
+### Ticket [DASHBOARD-16] : Widget "Pays le plus représenté"
+
+- **Branche** : `feature/DASHBOARD-16-widget-top-country`
+- **Description** : Widget affichant le pays le plus représenté avec son nom, effectif en `films`, gestion des noms longs, démo Storybook `United States of America` et `725 films` et tests complets.
+- **Statut** : PR ouverte en attente de review par Alexandre-girard-maif.
+- **Couverture de code** : 100 %.
+
+### Ticket [DASHBOARD-15] : Widget "Note moyenne"
+
+- **Branche** : `feature/DASHBOARD-15-widget-average-rating`
+- **Description** : Widget affichant la note moyenne des films avec format français à 2 décimales, échelle `/ 10`, distinction des données absentes par rapport à zéro, démonstration Storybook à 6,78 / 10 et tests complets.
+- **Statut** : PR ouverte en attente de review par Alexandre-girard-maif.
+- **Couverture de code** : 100 %.
+
+### Ticket [DASHBOARD-14] : Widget "Durée moyenne"
+
+- **Branche** : `feature/DASHBOARD-14-widget-average-runtime`
+- **Description** : Widget affichant la durée moyenne des films avec l'unité `min`, distinction des données absentes par rapport à zéro, démonstration Storybook à 107 min et tests complets.
+- **Statut** : PR ouverte en attente de review par Alexandre-girard-maif.
+- **Couverture de code** : 100 %.
+
+### Ticket [DASHBOARD-13] : Widget "Films en base"
+
+- **Branche** : `feature/DASHBOARD-13-widget-movies-count`
+- **Description** : Création du widget d'affichage du nombre de films avec gestion des états (nominal, singulier/pluriel, chargement, erreur, absence de données) et stories Storybook associées.
+- **Statut** : PR ouverte en attente de review par Alexandre-girard-maif.
+- **Couverture de code** : 100 %.
+
+### Ticket [DASHBOARD-12] : Mise en œuvre du Storybook pour visualiser les widgets
+
+- **Branche** : `feature/DASHBOARD-12-storybook`
+- **Description** : Installation de Storybook avec React et Vite, scripts de dev/build, intégration du CSS global et rédaction du guide `docs/STORYBOOK.md`.
+- **Statut** : PR ouverte en attente de review par Alexandre-girard-maif.
+- **Couverture de code** : 100 %.
+
+### Ticket [DASHBOARD-11] : Afficher la page de tableau de bord des films sans widgets
+
+- **Branche** : `feature/DASHBOARD-11-dashboard-page`
+- **Description** : Implémentation du composant `DashboardPage`, routage `/dashboard`, navigation dans la `NavBar` et tests unitaires complets.
+- **Statut** : PR ouverte en attente de review par Alexandre-girard-maif.
+- **Couverture de code** : 100 %.
+
+### Ticket [DASHBOARD-10] : Mettre en place le service permettant de mettre à jour les films, genres et pays à partir des APIs mises en place
+
+- **Issue liée** : [#10](https://github.com/theopetit1/themoviedb-discovery-app/issues/10)
+- **Branche** : `feature/DASHBOARD-10-movie-sync-service`
+- **Fichiers créés / modifiés** :
+  - `src/back-end/services/sync-service.ts` : Service complet d'orchestration (`updateGenresFromApi`, `updateCountriesFromApi`, `updateMovieDetailsFromApi`, `updatePopularMoviesFromApi`, `updateAllFromApi`).
+  - `src/back-end/services/sync-service.test.ts` : 14 tests unitaires exhaustifs avec mock réseau et validation SQLite en mémoire.
+  - `src/back-end/backend-cli.ts` : Sous-commandes CLI `update-genres`, `update-countries`, `update-movies [--id <id>] [--pages <pages>]` et `update-all [--pages <pages>]` avec exécution asynchrone sécurisée (`parseAsync`).
+  - `src/back-end/backend-cli.test.ts` : Tests d'intégration CLI pour l'ensemble des commandes de mise à jour depuis les APIs.
+
+#### Choix d'Architecture & Conception
+
+1. **Découplage de la couche Service (Pattern Service Layer)** : Le module `sync-service.ts` concentre la logique d'appel aux APIs externes, de normalisation des flux JSON et de mapping vers les entités SQLite métier, isolant les repositories et le CLI de tout couplage direct avec les protocoles réseau.
+2. **Synchronisation en cascade des relations** : Lors de l'actualisation d'un film (`updateMovieDetailsFromApi`), ses genres et pays de production associés sont automatiquement synchronisés dans les tables `genres` et `countries` avant l'enregistrement des jointures, prévenant toute violation d'intégrité référentielle SQLite.
+3. **Robustesse et gestion défensive des métriques** : Validation et conversion sécurisée des valeurs nullables ou numériques (notes, durées positives, budgets, recettes) et repli transparent vers `null` pour préserver la fidélité des statistiques d'analyse.
+4. **Ergonomie et pilotage CLI unifié** : Les nouvelles commandes CLI permettent d'exécuter des mises à jour granulaires ou globales avec gestion du chemin configurable `--path` et fermeture systématique des connexions dans des blocs `finally`.
+
+#### Preuves de Validation
+
+- Vitest : **154/154 tests unitaires passés avec succès**.
 - Couverture globale du projet : **100 % Stmts, 100 % Branch, 100 % Funcs, 100 % Lines**.
 - Linters : 0 avertissement, 0 erreur (`oxlint`, `oxfmt`).

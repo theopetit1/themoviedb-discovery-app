@@ -1,0 +1,88 @@
+.dashboard-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem 1.5rem 4rem;
+}
+
+.dashboard-hero {
+  border-bottom: 1px solid var(--border-color, #e5e7eb);
+  padding-bottom: 1.5rem;
+}
+
+.dashboard-eyebrow {
+  color: var(--color-primary, #2563eb);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.5rem;
+  text-transform: uppercase;
+}
+
+.dashboard-hero h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 0.75rem;
+}
+
+.dashboard-intro {
+  color: var(--text-secondary, #6b7280);
+  font-size: 1.125rem;
+  margin: 0;
+  max-width: 48rem;
+}
+
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dashboard-empty-state {
+  background: var(--card-bg, #ffffff);
+  border: 1px dashed var(--border-color, #d1d5db);
+  border-radius: 12px;
+  max-width: 42rem;
+  padding: 3rem 2rem;
+  text-align: center;
+  width: 100%;
+}
+
+.dashboard-empty-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.dashboard-empty-state h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 0.75rem;
+}
+
+.dashboard-empty-state p {
+  color: var(--text-secondary, #6b7280);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0 auto 1.5rem;
+  max-width: 32rem;
+}
+
+.dashboard-info-box {
+  background: var(--bg-secondary, #f9fafb);
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0 auto;
+  max-width: 26rem;
+  padding: 1rem 1.5rem;
+  text-align: left;
+}
+
+.dashboard-info-box p {
+  color: var(--text-primary, #111827);
+  font-size: 0.9375rem;
+  margin: 0;
+}
