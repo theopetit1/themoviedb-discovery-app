@@ -9,6 +9,9 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
 ### Ajouté
 
+- **DASHBOARD-25** : Intégration complète des 12 widgets d'analyse dans la page `DashboardPage` avec grille responsive, navigation par période (2015-2024, 2024, 2020-2023) et actions d'actualisation/réinitialisation.
+- **DASHBOARD-25** : Tests unitaires de disposition et d'interactions avec 100 % de couverture de code.
+
 - **DASHBOARD-24** : Composant `BestWeightedRatedGenreWidget` dans `src/front-end/components/Widgets/BestWeightedRatedGenreWidget/` affichant le genre ayant la meilleure note pondérée bayésienne sur 10.
 - **DASHBOARD-24** : Stories Storybook avec démonstration `Animation` et `7,68 / 10`, validation de la formule IMDB/Weighted Rating et tests unitaires à 100 % de couverture de code.
 

@@ -199,6 +199,13 @@ Ce document sert de **fil conducteur et de journal de bord technique** pour le s
 
 ---
 
+### Ticket [DASHBOARD-25] : Intégrer les widgets dans le tableau de bord
+
+- **Branche** : `feature/DASHBOARD-25-dashboard-widgets-integration`
+- **Description** : Intégration harmonieuse de l'ensemble des 12 widgets développés (indicateurs généraux, analyse par genre et pays, palmarès des films) au sein de la page `DashboardPage`, avec filtres interactifs par période (2015-2024, 2024, 2020-2023), gestion de l'actualisation et tests complets de disposition et d'interaction.
+- **Statut** : PR ouverte en attente de review par Alexandre-girard-maif.
+- **Couverture de code** : 100 %.
+
 ### Ticket [DASHBOARD-24] : Widget "Meilleure note pondérée" par genre
 
 - **Branche** : `feature/DASHBOARD-24-widget-best-weighted-rated-genre`
