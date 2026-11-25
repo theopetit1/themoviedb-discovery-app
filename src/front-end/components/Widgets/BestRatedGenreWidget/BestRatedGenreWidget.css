@@ -1,0 +1,43 @@
+.best-rated-genre-widget {
+  min-height: 150px;
+}
+
+.best-rated-genre-metric {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  width: 100%;
+}
+
+.best-rated-genre-name {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-text, #212529);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.best-rated-genre-score-wrapper {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+}
+
+.best-rated-genre-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-accent, #fab005);
+  letter-spacing: -0.02em;
+}
+
+.best-rated-genre-scale {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-muted, #868e96);
+}
